@@ -1,0 +1,9 @@
+---
+import Layout from '../layouts/Layout.astro'
+
+import { Calendar } from '../components/calendar'
+---
+
+<Layout title="Calendar day refactoring">
+  <Calendar client:only="react" />
+</Layout>

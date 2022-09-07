@@ -1,0 +1,13 @@
+---
+import { cx } from '../utils'
+
+export interface Props {
+  class?: string
+}
+
+const { class: classTweaks } = Astro.props as Props
+---
+
+<div class={cx('max-w-5xl mx-auto px-4 sm:px-6 lg:px-8', classTweaks)}>
+  <slot />
+</div>

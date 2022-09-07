@@ -1,0 +1,34 @@
+{
+  "name": "@example/basics",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.0.10",
+    "astro": "^1.1.6",
+    "prop-types": "^15.8.1",
+    "react-aria": "^3.19.0",
+    "react-stately": "^3.17.0"
+  },
+  "devDependencies": {
+    "@astrojs/alpinejs": "^0.1.2",
+    "@astrojs/react": "^1.1.1",
+    "@astrojs/solid-js": "^1.1.0",
+    "@astrojs/svelte": "^1.0.0",
+    "@astrojs/tailwind": "^1.0.0",
+    "@astrojs/vue": "^1.0.1",
+    "@types/alpinejs": "^3.7.0",
+    "alpinejs": "^3.10.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "solid-js": "^1.5.4",
+    "svelte": "^3.50.0",
+    "vue": "^3.2.38"
+  }
+}
