@@ -1,7 +1,11 @@
----
-import { cx } from '../utils'
+import React from 'react'
 
+import { cx } from '../../utils'
+
+// ------------------------------
 // Tailwind classes lookup inventory
+// ------------------------------
+
 const baseClasses =
   'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
 
@@ -26,21 +30,29 @@ const shapeClasses = {
   pill: 'rounded-full',
 }
 
+// ------------------------------
+// Button Props
+// ------------------------------
 type SizeVariant = keyof typeof sizeClasses
 type ImpactVariant = keyof typeof impactClasses
 type ShapeVariant = keyof typeof shapeClasses
 
-export interface ButtonProps {
+interface ButtonProps extends React.ComponentProps<'button'> {
   size?: SizeVariant
   impact?: ImpactVariant
   shape?: ShapeVariant
 }
 
-const { size = 'medium', impact = 'bold', shape = 'rounded', ...props } = Astro.props as ButtonProps
+const Button = ({ size = 'medium', impact = 'bold', shape = 'rounded', ...props }: ButtonProps) => {
+  // Putting it all back together
+  const mergedClasses = cx(
+    baseClasses,
+    impactClasses[impact],
+    sizeClasses[size],
+    shapeClasses[shape]
+  )
 
-const mergedClasses = cx(baseClasses, impactClasses[impact], sizeClasses[size], shapeClasses[shape])
----
+  return <button {...props} className={mergedClasses} />
+}
 
-<button {...props} class={mergedClasses}>
-  <slot />
-</button>
+export default Button
