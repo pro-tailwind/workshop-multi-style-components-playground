@@ -1,0 +1,9 @@
+tasks:
+  - init: npm instal
+    command: npm run dev
+
+vscode:
+  extensions:
+    - esbenp.prettier-vscode
+    - bradlc.vscode-tailwindcss
+    - astro-build.astro-vscode
