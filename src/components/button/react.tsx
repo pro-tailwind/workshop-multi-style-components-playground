@@ -1,13 +1,16 @@
 import React from 'react'
-
 import { cx } from '../../utils'
 
-/* 
+/*
   ------------------------------
-  Possible prop values for `size`, `impact` and `shape`
+  1. Extract the Tailwind classes common to
+  all components into the `baseClasses` variable
+  below
   ------------------------------
 */
+const baseClasses = ''
 
+// Possible prop values for `size`, `impact` and `shape`
 interface ButtonProps extends React.ComponentProps<'button'> {
   size?: 'small' | 'medium' | 'large'
   impact?: 'bold' | 'light' | 'none'
@@ -25,7 +28,8 @@ const Button = ({
       {...restProps}
       /* 
         ------------------------------
-        TODO: manage multi-variant Tailwind CSS styles in the `className` attribute below
+        2. Add the `baseClasses` variable into the 
+        className attribute below.
         ------------------------------
       */
       classname=""
