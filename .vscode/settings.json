@@ -1,7 +1,0 @@
-{
-  "tailwindCSS.classAttributes": ["class", "className", "ngClass", ".*Classes"],
-  "tailwindCSS.experimental.classRegex": [
-    // Support for the `cx()` function from classnames / clsx
-    ["cx\\(([^)]*)\\)", "(?:\"|'|`)([^(?:\"|'|`)]*)(?:\"|'|`)"]
-  ]
-}
