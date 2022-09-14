@@ -5,7 +5,7 @@ import { cx } from '../../utils'
 // Tailwind Classes lookup directory
 // ------------------------------
 const baseClasses =
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
+  'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
 
 const impactClasses = {
   bold: 'bg-indigo-500 text-white shadow-md hover:bg-indigo-600',
