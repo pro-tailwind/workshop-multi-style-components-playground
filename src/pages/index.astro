@@ -1,49 +1,42 @@
 ---
 import Layout from '../layouts/Layout.astro'
 import Container from '../components/container.astro'
+import GroupDisplay from '../components/group-display.astro'
 
-import HardcodedButtons from '../components/button/hardcoded.astro'
-import ReactButton from '../components/button/react'
+import HardcodedButtons from '../partials/hardcoded-buttons.astro'
+import Button from '../components/button/react'
 ---
 
 <Layout title="Multi-style buttons">
   <Container class="mt-20">
     <HardcodedButtons />
-    <section class="mt-16">
-      <h2 class="text-xl font-medium">Kitchen sink</h2>
-      <div class="mt-2 space-y-2">
-        <div class="flex flex-wrap items-center gap-3">
-          <ReactButton shape="pill" size="large">React large pill</ReactButton>
-          <ReactButton shape="pill" size="small" impact="light">React small pill</ReactButton>
-          <ReactButton shape="square">React fair and square</ReactButton>
-        </div>
 
-        <!--  -->
-        <div>
-          <div class="mt-12"></div>
-        </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <ReactButton impact="light">Light button</ReactButton>
-          <ReactButton impact="none">No impact</ReactButton>
+    <hr class="mt-12" />
 
-          <ReactButton size="small" shape="square">Small square</ReactButton>
-          <ReactButton size="small" shape="square" impact="light">Small square</ReactButton>
+    <section class="mt-12">
+      <h2 class="text-2xl font-semibold">// TODO: Style the <code>Button</code> component</h2>
+      <p class="mt-2">
+        Apply the correct styles to the <code>Button</code> component to make the below variants look
+        like they should.
+      </p>
+      <div class="mt-4 space-y-4">
+        <GroupDisplay title="Impact">
+          <Button>Bold</Button>
+          <Button impact="light">Light</Button>
+          <Button impact="none">None</Button>
+        </GroupDisplay>
 
-          <ReactButton size="small">Small rounded</ReactButton>
-          <ReactButton size="small" impact="light">Small rounded</ReactButton>
+        <GroupDisplay title="Size">
+          <Button size="large">Large</Button>
+          <Button>Medium</Button>
+          <Button size="small">Small</Button>
+        </GroupDisplay>
 
-          <ReactButton size="small" shape="pill">Small pill</ReactButton>
-          <ReactButton impact="light" size="small" shape="pill">Small pill</ReactButton>
-          <ReactButton size="large" shape="square">Large square</ReactButton>
-          <ReactButton size="medium" shape="square">Medium square</ReactButton>
-          <ReactButton size="small" shape="square">Small square</ReactButton>
-          <ReactButton size="large" shape="square" impact="light">Large square</ReactButton>
-          <ReactButton size="medium" shape="square" impact="light">Medium square</ReactButton>
-          <ReactButton size="small" shape="square" impact="light">Small square</ReactButton>
-          <ReactButton size="large" shape="pill">Large pill</ReactButton>
-          <ReactButton size="medium" shape="pill">Medium pill</ReactButton>
-          <ReactButton size="small" shape="pill">Small pill</ReactButton>
-        </div>
+        <GroupDisplay title="Shape">
+          <Button shape="square">Square</Button>
+          <Button>Rounded</Button>
+          <Button shape="pill">Pill button</Button>
+        </GroupDisplay>
       </div>
     </section>
   </Container>

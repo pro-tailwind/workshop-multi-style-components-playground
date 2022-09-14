@@ -2,57 +2,35 @@ import React from 'react'
 
 import { cx } from '../../utils'
 
-// ------------------------------
-// Tailwind classes lookup inventory
-// ------------------------------
-
-const baseClasses =
-  'font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none'
-
-// `size` prop possible values (auto-defines Type values)
-const sizeClasses = {
-  large: 'px-6 py-2.5 text-lg',
-  medium: 'px-4 py-2',
-  small: 'px-3 py-1 text-sm',
-}
-
-// `impact` prop possible values (auto-defines Type values)
-const impactClasses = {
-  bold: 'bg-indigo-500 text-white hover:bg-indigo-600 shadow-md',
-  light: 'bg-indigo-100 text-indigo-800 hover:bg-indigo-200',
-  none: 'bg-transparent text-indigo-700 hover:bg-indigo-50',
-}
-
-// `shape` prop possible values (auto-defines Type values)
-const shapeClasses = {
-  square: '',
-  rounded: 'rounded',
-  pill: 'rounded-full',
-}
-
-// ------------------------------
-// Button Props
-// ------------------------------
-type SizeVariant = keyof typeof sizeClasses
-type ImpactVariant = keyof typeof impactClasses
-type ShapeVariant = keyof typeof shapeClasses
+/* 
+  ------------------------------
+  Possible prop values for `size`, `impact` and `shape`
+  ------------------------------
+*/
 
 interface ButtonProps extends React.ComponentProps<'button'> {
-  size?: SizeVariant
-  impact?: ImpactVariant
-  shape?: ShapeVariant
+  size?: 'small' | 'medium' | 'large'
+  impact?: 'bold' | 'light' | 'none'
+  shape?: 'square' | 'rounded' | 'pill'
 }
 
-const Button = ({ size = 'medium', impact = 'bold', shape = 'rounded', ...props }: ButtonProps) => {
-  // Putting it all back together
-  const mergedClasses = cx(
-    baseClasses,
-    impactClasses[impact],
-    sizeClasses[size],
-    shapeClasses[shape]
+const Button = ({
+  size = 'medium',
+  impact = 'bold',
+  shape = 'rounded',
+  ...restProps
+}: ButtonProps) => {
+  return (
+    <button
+      {...restProps}
+      /* 
+        ------------------------------
+        TODO: manage multi-variant Tailwind CSS styles in the `className` attribute below
+        ------------------------------
+      */
+      classname=""
+    />
   )
-
-  return <button {...props} className={mergedClasses} />
 }
 
 export default Button
