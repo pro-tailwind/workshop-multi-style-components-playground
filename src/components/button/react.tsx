@@ -10,13 +10,18 @@ import { cx } from '../../utils'
 */
 const baseClasses = ''
 
+// ------------------------------
 // Possible prop values for `size`, `impact` and `shape`
+// ------------------------------
 interface ButtonProps extends React.ComponentProps<'button'> {
   size?: 'small' | 'medium' | 'large'
   impact?: 'bold' | 'light' | 'none'
   shape?: 'square' | 'rounded' | 'pill'
 }
 
+// ------------------------------
+// Component definition (with default variants)
+// ------------------------------
 const Button = ({
   size = 'medium',
   impact = 'bold',
@@ -32,7 +37,7 @@ const Button = ({
         className attribute below.
         ------------------------------
       */
-      classname=""
+      className=""
     />
   )
 }
