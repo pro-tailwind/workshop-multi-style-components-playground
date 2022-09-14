@@ -10,5 +10,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('./src/utils/stripes-plugin')],
+  plugins: [],
 }
