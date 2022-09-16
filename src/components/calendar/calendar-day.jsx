@@ -26,19 +26,29 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     candidate: 'hover:bg-gray-100 text-gray-900',
   }
 
+  const baseClasses =
+    'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
+
+  const selectedClasses = 'bg-indigo-600 text-white font-bold bg-stripes'
+
+  const availabilityStatusClasses = {
+    DISABLED: 'text-gray-300 pointer-events-none',
+    NO_VACANCY: 'text-gray-900 hover:bg-gray-100',
+    TODAY_NO_VACANCY: 'text-indigo-600 font-bold hover:bg-gray-100',
+    VACANCY: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
+  }
+
   /*
     ------------------------------
-    Compose the classes used in the `calendarClasses` object above
-    to style each individual availability status below.
-    Remember: a calendar day can only ever be in 
-    *one* of these statuses.
+    Instead of having too much logic in our `className` attribute,
+    let's determine what availability status a given day is in.
+    The `getAvailabilityStatus` function should always return 
+    one of the 4 availability statuses.
     ------------------------------
   */
-  const availabilityStatusClasses = {
-    DISABLED: '',
-    NO_VACANCY: '',
-    TODAY_NO_VACANCY: '',
-    VACANCY: '',
+
+  function getAvailibilityStatus() {
+    // TODO
   }
 
   return (
