@@ -26,28 +26,12 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     candidate: 'hover:bg-gray-100 text-gray-900',
   }
 
-  /*
-    ------------------------------
-    Define a list of finite "states" or availability statuses
-    a calendar day can be in (not including `selected`).
-    ------------------------------
-  */
-
-  const availabilityStatuses = ['NOT_ELIGIBLE' /* add statuses here... */]
-
   return (
     <td {...cellProps}>
       <div
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
-        /*
-          ------------------------------
-          As new "edge" cases were discovered,  the
-          complexity grew a little out of control 
-          in the `className` attribute below.
-          ------------------------------
-        */
         className={cx(
           calendarClasses.base,
           isSelected && calendarClasses.selected,
