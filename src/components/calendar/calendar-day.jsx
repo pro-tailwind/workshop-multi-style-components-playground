@@ -30,13 +30,15 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     ------------------------------
     Define a list of finite "states" or availability statuses
     a calendar day can be in (not including `selected`).
-    Do this by adding a key for each status in the
-    `availabilityStatusClasses` object below.
-    
-    The values can be empty strings for now!
+    Complete the `availabilityStatus` Enum object
+    with those statuses.
     ------------------------------
   */
-  const availabilityStatusClasses = {}
+
+  const availabilityStatuses = Object.freeze({
+    DISABLED: 'DISABLED',
+    // TODO: complete the list of statuses
+  })
 
   return (
     <td {...cellProps}>
