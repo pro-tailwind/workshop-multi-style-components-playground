@@ -2,13 +2,25 @@
 import Layout from '../layouts/Layout.astro'
 import Container from '../components/container.astro'
 
+import CalendarReference from '../components/reference'
 import Calendar from '../components/calendar'
+import HardcodedDays from '../components/reference/hardcoded-days.astro'
 ---
 
 <Layout title="Refactoring creeping complexity">
   <Container class="mt-20">
-    <div class="max-w-md">
-      <Calendar client:load />
+    <div class="grid lg:grid-cols-2 gap-x-32 gap-y-20 justify-center">
+      <div class="max-w-md">
+        <h2 class="uppercase text-blue-500 tracking-widest text-sm font-semibold">Refactoring</h2>
+        <Calendar client:only="react" />
+      </div>
+      <div class="max-w-md">
+        <h2 class="uppercase text-red-500 tracking-widest text-sm font-semibold">Reference</h2>
+        <CalendarReference client:only="react" />
+      </div>
+    </div>
+    <div class="py-32">
+      <HardcodedDays />
     </div>
   </Container>
 </Layout>
