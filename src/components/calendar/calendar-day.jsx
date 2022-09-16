@@ -48,8 +48,14 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
   */
 
   function getAvailibilityStatus() {
-    // TODO
+    if (isDisabled) return 'DISABLED'
+    if (!hasAvailability) {
+      return isToday(date) ? 'TODAY_NO_VACANCY' : 'NO_VACANCY'
+    }
+    return 'VACANCY'
   }
+
+  const availabilityStatus = getAvailibilityStatus()
 
   return (
     <td {...cellProps}>
@@ -59,15 +65,15 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
         hidden={isOutsideVisibleRange}
         className={cx(
           calendarClasses.base,
-          isSelected && calendarClasses.selected,
-          isDisabled && calendarClasses.disabled,
-          isToday(date) && !isSelected && calendarClasses.today,
-          hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
-          !hasAvailability &&
-            !isToday(date) &&
-            !isDisabled &&
-            !isSelected &&
-            calendarClasses.candidate
+          isSelected ? calendarClasses.selected : availabilityStatusClasses[availabilityStatus]
+          // isDisabled && calendarClasses.disabled,
+          // isToday(date) && !isSelected && calendarClasses.today,
+          // hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
+          // !hasAvailability &&
+          //   !isToday(date) &&
+          //   !isDisabled &&
+          //   !isSelected &&
+          //   calendarClasses.candidate
         )}
       >
         <span>{formattedDate}</span>
