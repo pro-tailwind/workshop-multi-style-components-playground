@@ -26,19 +26,29 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     candidate: 'hover:bg-gray-100 text-gray-900',
   }
 
+  const availabilityStatuses = Object.freeze({
+    DISABLED: 'DISABLED',
+    NO_VACANCY: 'NO_VACANCY',
+    TODAY_NO_VACANCY: 'TODAY_NO_VACANCY',
+    VACANCY: 'VACANCY',
+  })
+
   /*
     ------------------------------
-    Compose the classes used in the `calendarClasses` object above
-    to style each individual availability status below.
+    Using the Tailwind classes from the `calendarClasses` object above,
+    style each individual availability status below in the
+    `availabilityStatusClasses` lookup object below.
+    
     Remember: a calendar day can only ever be in 
     *one* of these statuses.
     ------------------------------
   */
+
   const availabilityStatusClasses = {
-    DISABLED: '',
-    NO_VACANCY: '',
-    TODAY_NO_VACANCY: '',
-    VACANCY: '',
+    [availabilityStatuses.DISABLED]: '',
+    [availabilityStatuses.NO_VACANCY]: '',
+    [availabilityStatuses.TODAY_NO_VACANCY]: '',
+    [availabilityStatuses.VACANCY]: '',
   }
 
   return (
