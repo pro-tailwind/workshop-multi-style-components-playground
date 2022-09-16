@@ -26,17 +26,24 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     candidate: 'hover:bg-gray-100 text-gray-900',
   }
 
+  const availabilityStatuses = Object.freeze({
+    DISABLED: 'DISABLED',
+    NO_VACANCY: 'NO_VACANCY',
+    TODAY_NO_VACANCY: 'TODAY_NO_VACANCY',
+    VACANCY: 'VACANCY',
+  })
+
+  const availabilityStatusClasses = {
+    [availabilityStatuses.DISABLED]: 'text-gray-300 pointer-events-none',
+    [availabilityStatuses.NO_VACANCY]: 'text-gray-900 hover:bg-gray-100',
+    [availabilityStatuses.TODAY_NO_VACANCY]: 'text-indigo-600 font-bold hover:bg-gray-100',
+    [availabilityStatuses.VACANCY]: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
+  }
+
   const baseClasses =
     'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
 
   const selectedClasses = 'bg-indigo-600 text-white font-bold bg-stripes'
-
-  const availabilityStatusClasses = {
-    DISABLED: 'text-gray-300 pointer-events-none',
-    NO_VACANCY: 'text-gray-900 hover:bg-gray-100',
-    TODAY_NO_VACANCY: 'text-indigo-600 font-bold hover:bg-gray-100',
-    VACANCY: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
-  }
 
   /*
     ------------------------------
