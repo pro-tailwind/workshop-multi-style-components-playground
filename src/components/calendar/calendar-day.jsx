@@ -14,18 +14,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     isSameDay(parseDateTime(availability.startTime), date)
   )
 
-  const isCurrentDay = isToday(date)
-
-  // Tailwind classes lookup
-  const calendarClasses = {
-    base: 'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400',
-    selected: 'bg-indigo-600 text-white font-bold bg-stripes',
-    disabled: 'text-gray-300 pointer-events-none',
-    today: 'text-indigo-600 font-bold',
-    hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
-    candidate: 'hover:bg-gray-100 text-gray-900',
-  }
-
+  // Defining an Enum of the possible availability statuses
   const availabilityStatuses = Object.freeze({
     DISABLED: 'DISABLED',
     NO_VACANCY: 'NO_VACANCY',
@@ -37,6 +26,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
   const baseClasses =
     'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
 
+  // Enum-based style lookup object
   const availabilityStatusClasses = {
     [availabilityStatuses.DISABLED]: 'text-gray-300 pointer-events-none',
     [availabilityStatuses.NO_VACANCY]: 'text-gray-900 hover:bg-gray-100',
@@ -45,6 +35,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     [availabilityStatuses.SELECTED]: 'bg-indigo-600 text-white font-bold bg-stripes',
   }
 
+  // Helper to gather the actual status
   function getAvailibilityStatus() {
     if (isDisabled) return availabilityStatuses.DISABLED
     if (isSelected) return availabilityStatuses.SELECTED
@@ -60,23 +51,19 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
-        /*
-          ------------------------------
-          Update the `className` attribute below to use
-          the availability status logic we've created!
-          ------------------------------
-        */
         className={cx(
-          calendarClasses.base,
-          isSelected && calendarClasses.selected,
-          isDisabled && calendarClasses.disabled,
-          isToday(date) && !isSelected && calendarClasses.today,
-          hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
-          !hasAvailability &&
-            !isToday(date) &&
-            !isDisabled &&
-            !isSelected &&
-            calendarClasses.candidate
+          baseClasses,
+          availabilityStatusClasses[getAvailibilityStatus()]
+          // calendarClasses.base,
+          // isSelected && calendarClasses.selected,
+          // isDisabled && calendarClasses.disabled,
+          // isToday(date) && !isSelected && calendarClasses.today,
+          // hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
+          // !hasAvailability &&
+          //   !isToday(date) &&
+          //   !isDisabled &&
+          //   !isSelected &&
+          //   calendarClasses.candidate
         )}
       >
         <span>{formattedDate}</span>
