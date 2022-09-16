@@ -28,15 +28,18 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
 
   /*
     ------------------------------
-    Define a list of finite "states" or availability statuses
-    a calendar day can be in (not including `selected`).
-    Do this by adding a key for each status in the
-    `availabilityStatuses` object below.
-    
-    The values can be empty strings for now!
+    Compose the classes used in the `calendarClasses` object above
+    to style each individual availability status below.
+    Remember: a calendar day can only ever be in 
+    *one* of these statuses.
     ------------------------------
   */
-  const availabilityStatuses = {}
+  const availabilityStatusClasses = {
+    DISABLED: '',
+    NO_VACANCY: '',
+    TODAY_NO_VACANCY: '',
+    VACANCY: '',
+  }
 
   return (
     <td {...cellProps}>
