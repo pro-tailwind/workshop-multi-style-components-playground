@@ -16,9 +16,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
 
   const isCurrentDay = isToday(date)
 
-  // ------------------------------
-  // Tailwind classes lookup directory
-  // ------------------------------
+  // Tailwind classes lookup
   const calendarClasses = {
     base: 'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400',
     selected: 'bg-indigo-600 text-white font-bold bg-stripes',
@@ -27,6 +25,15 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
     candidate: 'hover:bg-gray-100 text-gray-900',
   }
+
+  /*
+    ------------------------------
+    Define a list of finite "states" or availability statuses
+    a calendar day can be in (not including `selected`).
+    ------------------------------
+  */
+
+  const availabilityStatuses = ['NOT_ELIGIBLE' /* add statuses here... */]
 
   return (
     <td {...cellProps}>
