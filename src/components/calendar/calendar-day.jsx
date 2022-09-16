@@ -31,38 +31,28 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     NO_VACANCY: 'NO_VACANCY',
     TODAY_NO_VACANCY: 'TODAY_NO_VACANCY',
     VACANCY: 'VACANCY',
+    SELECTED: 'SELECTED',
   })
 
   const baseClasses =
     'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
-
-  const selectedClasses = 'bg-indigo-600 text-white font-bold bg-stripes'
 
   const availabilityStatusClasses = {
     [availabilityStatuses.DISABLED]: 'text-gray-300 pointer-events-none',
     [availabilityStatuses.NO_VACANCY]: 'text-gray-900 hover:bg-gray-100',
     [availabilityStatuses.TODAY_NO_VACANCY]: 'text-indigo-600 font-bold hover:bg-gray-100',
     [availabilityStatuses.VACANCY]: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
+    [availabilityStatuses.SELECTED]: 'bg-indigo-600 text-white font-bold bg-stripes',
   }
-
-  /*
-    ------------------------------
-    Instead of having too much logic in our `className` attribute,
-    let's determine what availability status a given day is in.
-    The `getAvailabilityStatus` function should always return 
-    one of the 4 availability statuses.
-    ------------------------------
-  */
 
   function getAvailibilityStatus() {
     if (isDisabled) return availabilityStatuses.DISABLED
+    if (isSelected) return availabilityStatuses.SELECTED
     if (!hasAvailability) {
       return isToday(date) ? availabilityStatuses.TODAY_NO_VACANCY : availabilityStatuses.NO_VACANCY
     }
     return availabilityStatuses.VACANCY
   }
-
-  const status = getAvailibilityStatus()
 
   return (
     <td {...cellProps}>
@@ -70,17 +60,23 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
         {...buttonProps}
         ref={ref}
         hidden={isOutsideVisibleRange}
+        /*
+          ------------------------------
+          Update the `className` attribute below to use
+          the availability status logic we've created!
+          ------------------------------
+        */
         className={cx(
           calendarClasses.base,
-          isSelected ? calendarClasses.selected : availabilityStatusClasses[status]
-          // isDisabled && calendarClasses.disabled,
-          // isToday(date) && !isSelected && calendarClasses.today,
-          // hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
-          // !hasAvailability &&
-          //   !isToday(date) &&
-          //   !isDisabled &&
-          //   !isSelected &&
-          //   calendarClasses.candidate
+          isSelected && calendarClasses.selected,
+          isDisabled && calendarClasses.disabled,
+          isToday(date) && !isSelected && calendarClasses.today,
+          hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
+          !hasAvailability &&
+            !isToday(date) &&
+            !isDisabled &&
+            !isSelected &&
+            calendarClasses.candidate
         )}
       >
         <span>{formattedDate}</span>
