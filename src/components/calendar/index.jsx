@@ -1,98 +1,13 @@
 import * as React from 'react'
-import {
-  useCalendar,
-  useCalendarGrid,
-  useCalendarCell,
-  useButton,
-  useLocale,
-  useDateFormatter,
-} from 'react-aria'
+import { useCalendar, useCalendarGrid, useButton, useLocale, useDateFormatter } from 'react-aria'
 import { useCalendarState } from 'react-stately'
-import {
-  createCalendar,
-  getWeeksInMonth,
-  isSameDay,
-  parseDateTime,
-  isToday,
-  startOfWeek,
-  today,
-} from '@internationalized/date'
+import { createCalendar, getWeeksInMonth, startOfWeek, today } from '@internationalized/date'
 
-import cx from 'classnames'
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
-import { makeCalendarAvailabilities } from '../utils'
+import CalendarDay from './calendar-day'
 
-// ----------------------------
-// CalendarDay
-// ----------------------------
-
-function CalendarDay({ state, date, bookingAvailabilities }) {
-  const ref = React.useRef()
-  const { cellProps, buttonProps, isSelected, isOutsideVisibleRange, isDisabled, formattedDate } =
-    useCalendarCell({ date }, state, ref)
-
-  const hasAvailability = bookingAvailabilities.some((availability) =>
-    isSameDay(parseDateTime(availability.startTime), date)
-  )
-
-  const isCurrentDay = isToday(date)
-
-  /* 
-  Possible UI "states" of a calendar day: 
-  NOT_ELIGIBLE | NO_VACANCY | VACANCY | TODAY_NO_VACANCY
-  */
-
-  function getEligibilityStatus() {
-    if (isDisabled) return 'NOT_ELIGIBLE'
-    if (!hasAvailability) {
-      return isCurrentDay ? 'TODAY_NO_VACANCY' : 'NO_VACANCY'
-    }
-    return 'VACANCY'
-  }
-
-  const baseClasses =
-    'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
-  const selectedClasses = 'text-white bg-indigo-600 font-bold bg-stripes'
-
-  const statusClasses = {
-    NOT_ELIGIBLE: 'text-slate-300 pointer-events-none',
-    NO_VACANCY: 'text-slate-800 hover:bg-slate-100',
-    TODAY_NO_VACANCY: 'text-indigo-700 font-bold hover:bg-slate-100 hover:text-slate-800',
-    VACANCY: 'text-indigo-700 bg-indigo-100 font-bold hover:bg-indigo-200',
-  }
-
-  const eligibilityStatus = getEligibilityStatus()
-
-  return (
-    <td {...cellProps}>
-      <div
-        {...buttonProps}
-        ref={ref}
-        hidden={isOutsideVisibleRange}
-        className={cx(baseClasses, isSelected ? selectedClasses : statusClasses[eligibilityStatus])}
-      >
-        <span>{formattedDate}</span>
-        {isToday(date) && (
-          <span
-            className={cx(
-              'absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full',
-              isSelected ? 'bg-white' : 'bg-indigo-600'
-            )}
-          ></span>
-        )}
-      </div>
-    </td>
-  )
-}
-
-/*
-  ------------------------------
-  Below this comment are implementation components that
-  you don't need to worry about. We'll do all our work
-  within the `<CalendarDay />` component above.
-  ------------------------------
-*/
+import { makeCalendarAvailabilities } from '../../utils'
 
 // ----------------------------
 // Calendar
