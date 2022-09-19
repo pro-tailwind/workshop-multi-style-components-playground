@@ -15,7 +15,6 @@ export default function Modal() {
     setIsLoading(true)
     setTimeout(() => {
       setIsOpen(false)
-      setTimeout(() => setIsLoading(false), 1000)
     }, 3000)
   }
   return (
@@ -30,24 +29,19 @@ export default function Modal() {
       </div>
 
       <ModalComponent
-        title="Whoaaaaa"
-        size="large"
-        slideFrom="left"
-        isOpen={isOpen2}
-        onClose={setIsOpen2}
-        actions={{ confirm: { label: 'Ack!', action: () => setIsOpen2(false) } }}
-      >
-        <p>I am the component 2. I should be a little longer, but I don't have any cancel setup.</p>
-      </ModalComponent>
-
-      <ModalComponent
         isOpen={isOpen}
         onClose={setIsOpen}
+        setIsLoading={setIsLoading}
         slideFrom="top"
         title="Confirm Subscription"
         description="Membership subscription confirmation"
         actions={{
-          confirm: { label: 'Yes, confirm', action: handleConfirm, loading: isLoading },
+          confirm: {
+            label: 'Yes, confirm',
+            action: handleConfirm,
+            loading: isLoading,
+            afterLeave: () => setIsLoading(false),
+          },
           cancel: { label: 'Cancel', action: () => setIsOpen(false) },
         }}
       >
@@ -58,6 +52,20 @@ export default function Modal() {
           </a>
           . Your account will be billed for a one-year membership. We just want to make sure you
           understand that.
+        </p>
+      </ModalComponent>
+
+      <ModalComponent
+        title="Hang on a second!"
+        size="large"
+        slideFrom="left"
+        isOpen={isOpen2}
+        onClose={setIsOpen2}
+        actions={{ confirm: { label: 'Ack!', action: () => setIsOpen2(false) } }}
+      >
+        <p>
+          Just wanted to let you know that we're working hard on finding a better solution for this.
+          We'll keep you updated as soon as we've got something to show you!
         </p>
       </ModalComponent>
     </>

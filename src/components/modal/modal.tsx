@@ -10,6 +10,7 @@ interface ModalProps {
   description?: string
   isOpen: boolean
   onClose: () => void
+  setIsLoading?: (isLoading: boolean) => void
   actions: {
     cancel?: {
       label: string
@@ -17,8 +18,9 @@ interface ModalProps {
     }
     confirm: {
       label: string
-      action: () => void
       loading?: boolean
+      action: () => void
+      afterLeave?: () => void
     }
   }
   slideFrom: 'top' | 'right' | 'bottom' | 'left'
@@ -31,6 +33,7 @@ export default function Modal({
   description,
   isOpen,
   onClose,
+  setIsLoading,
   actions,
   slideFrom = 'bottom',
   size = 'medium',
@@ -73,7 +76,7 @@ export default function Modal({
             leave="transition ease-in"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            // afterLeave={() => setIsLoading(false)}
+            afterLeave={() => setIsLoading && setIsLoading(false)}
           >
             <div className="fixed inset-0 bg-indigo-300 bg-opacity-75 transition-opacity"></div>
           </Transition.Child>
