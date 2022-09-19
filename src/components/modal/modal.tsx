@@ -34,19 +34,19 @@ export default function Modal({
 }: ModalProps) {
   const slideFromClasses = {
     top: {
-      from: '-translate-y-24',
+      from: '-translate-y-16',
       to: 'translate-y-0',
     },
     right: {
-      from: 'translate-x-24',
+      from: 'translate-x-16',
       to: 'translate-x-0',
     },
     bottom: {
-      from: 'translate-y-24',
+      from: 'translate-y-16',
       to: 'translate-y-0',
     },
     left: {
-      from: '-translate-x-24',
+      from: '-translate-x-16',
       to: 'translate-x-0',
     },
   }
@@ -69,7 +69,7 @@ export default function Modal({
           <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
               <Transition.Child
-                enter="transition"
+                enter="transition duration-300"
                 enterFrom={`opacity-0 ${slideFromClasses[slideFrom].from}`}
                 enterTo={`opacity-100 ${slideFromClasses[slideFrom].to}`}
                 leave="transition"
