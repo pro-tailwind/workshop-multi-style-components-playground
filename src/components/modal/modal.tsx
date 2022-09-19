@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
+import Button from '../button'
 import { cx } from '../../utils'
 
-import Button from '../button'
-
+// ---------------------------------
+// Prop types
+// ---------------------------------
 interface ModalProps {
   title: string
   description?: string
@@ -28,6 +30,36 @@ interface ModalProps {
   children: React.ReactNode
 }
 
+// ------------------------------
+// Styles lookup
+// ------------------------------
+const sizeClasses = {
+  small: 'sm:max-w-sm',
+  medium: 'sm:max-w-lg',
+  large: 'sm:max-w-3xl',
+}
+const slideFromClasses = {
+  top: {
+    from: '-translate-y-16',
+    to: 'translate-y-0',
+  },
+  right: {
+    from: 'translate-x-16',
+    to: 'translate-x-0',
+  },
+  bottom: {
+    from: 'translate-y-16',
+    to: 'translate-y-0',
+  },
+  left: {
+    from: '-translate-x-16',
+    to: 'translate-x-0',
+  },
+}
+
+// ---------------------------------
+// Component
+// ---------------------------------
 export default function Modal({
   title,
   description,
@@ -39,32 +71,6 @@ export default function Modal({
   size = 'medium',
   children,
 }: ModalProps) {
-  // ------------------------------
-  // Styles lookup
-  // ------------------------------
-  const sizeClasses = {
-    small: 'sm:max-w-sm',
-    medium: 'sm:max-w-lg',
-    large: 'sm:max-w-3xl',
-  }
-  const slideFromClasses = {
-    top: {
-      from: '-translate-y-16',
-      to: 'translate-y-0',
-    },
-    right: {
-      from: 'translate-x-16',
-      to: 'translate-x-0',
-    },
-    bottom: {
-      from: 'translate-y-16',
-      to: 'translate-y-0',
-    },
-    left: {
-      from: '-translate-x-16',
-      to: 'translate-x-0',
-    },
-  }
   return (
     <div>
       <Transition.Root show={isOpen}>
@@ -113,21 +119,16 @@ export default function Modal({
                     </div>
                   </div>
                   <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
+                    {/* Confirm button */}
                     {actions.confirm && (
                       <Button onClick={actions.confirm.action} disabled={actions.confirm.loading}>
                         <span className="flex gap-4 items-center">
                           <span>{actions.confirm.label}</span>
-                          <Transition
-                            show={!!actions.confirm.loading}
-                            enter="transition ease-out"
-                            enterFrom="scale-0"
-                            enterTo="scale-100"
-                          >
-                            <Spinner />
-                          </Transition>
+                          <LoadingSpinner show={!!actions.confirm.loading} />
                         </span>
                       </Button>
                     )}
+                    {/* Cancel button button */}
                     {actions.cancel && (
                       <Button
                         disabled={actions.confirm.loading}
@@ -148,27 +149,32 @@ export default function Modal({
   )
 }
 
-function Spinner() {
+// ---------------------------------
+// Implementation components
+// ---------------------------------
+function LoadingSpinner({ show }) {
   return (
-    <svg
-      className="animate-spin h-5 w-5 text-white"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-    >
-      <circle
-        className="opacity-25"
-        cx="12"
-        cy="12"
-        r="10"
-        stroke="currentColor"
-        strokeWidth="4"
-      ></circle>
-      <path
-        className="opacity-75"
-        fill="currentColor"
-        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-      ></path>
-    </svg>
+    <Transition show={show} enter="transition ease-out" enterFrom="scale-0" enterTo="scale-100">
+      <svg
+        className="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </Transition>
   )
 }
