@@ -1,30 +1,40 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import Button from './button'
+import Button from '../button'
 
-export default function Modal() {
-  const [isOpen, setIsOpen] = React.useState(true)
-  const [isLoading, setIsLoading] = React.useState(false)
-
-  // Custom confirmation logic
-  function handleConfirm() {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsOpen(false)
-    }, 3000)
+interface ModalProps {
+  title: string
+  description?: string
+  isOpen: boolean
+  onClose: () => void
+  children: React.ReactNode
+  actions: {
+    cancel?: {
+      label: string
+      action: () => void
+    }
+    confirm: {
+      label: string
+      action: () => void
+      loading: boolean
+    }
   }
+}
 
+export default function Modal({
+  title,
+  description,
+  isOpen,
+  onClose,
+  actions,
+  children,
+}: ModalProps) {
   return (
     <div>
-      {/* Modal toggle */}
-      <Button impact="light" onClick={() => setIsOpen(true)}>
-        Toggle modal
-      </Button>
-
       {/* Modal */}
       <Transition.Root show={isOpen}>
-        <Dialog onClose={setIsOpen} className="relative z-10">
+        <Dialog onClose={onClose} className="relative z-10">
           <Transition.Child
             enter="transition ease-out"
             enterFrom="opacity-0"
@@ -32,7 +42,7 @@ export default function Modal() {
             leave="transition ease-in"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            afterLeave={() => setIsLoading(false)}
+            // afterLeave={() => setIsLoading(false)}
           >
             <div className="fixed inset-0 bg-indigo-300 bg-opacity-75 transition-opacity"></div>
           </Transition.Child>
@@ -53,37 +63,41 @@ export default function Modal() {
                         className="text-xl font-semibold leading-6 text-slate-900"
                         id="modal-title"
                       >
-                        Confirm Subscription
+                        {title}
                       </Dialog.Title>
                       <div className="mt-4">
-                        <p className="text-slate-500">
-                          You're about to confirm your{' '}
-                          <a className="underline text-indigo-600 hover:text-indigo-500" href="#">
-                            membership subscription
-                          </a>
-                          . Your account will be billed for a one-year membership. We just want to
-                          make sure you understand that.
-                        </p>
+                        {description && (
+                          <Dialog.Description className="sr-only">{description}</Dialog.Description>
+                        )}
+                        {children}
                       </div>
                     </div>
                   </div>
                   <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
-                    <Button onClick={handleConfirm} disabled={isLoading}>
-                      <span className="flex gap-4 items-center">
-                        <span>{isLoading ? 'Confirming' : 'Yes, confirm'}</span>
-                        <Transition
-                          show={isLoading}
-                          enter="transition ease-out"
-                          enterFrom="scale-0"
-                          enterTo="scale-100"
-                        >
-                          <Spinner />
-                        </Transition>
-                      </span>
-                    </Button>
-                    <Button disabled={isLoading} impact="none" onClick={() => setIsOpen(false)}>
-                      Cancel
-                    </Button>
+                    {actions.confirm && (
+                      <Button onClick={actions.confirm.action} disabled={actions.confirm.loading}>
+                        <span className="flex gap-4 items-center">
+                          <span>{actions.confirm.label}</span>
+                          <Transition
+                            show={actions.confirm.loading}
+                            enter="transition ease-out"
+                            enterFrom="scale-0"
+                            enterTo="scale-100"
+                          >
+                            <Spinner />
+                          </Transition>
+                        </span>
+                      </Button>
+                    )}
+                    {actions.cancel && (
+                      <Button
+                        disabled={actions.confirm.loading}
+                        impact="none"
+                        onClick={actions.cancel.action}
+                      >
+                        {actions.cancel.label}
+                      </Button>
+                    )}
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
