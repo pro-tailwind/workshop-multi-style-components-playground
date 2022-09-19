@@ -2,9 +2,12 @@ import React from 'react'
 
 import ModalComponent from './modal'
 import Button from '../button'
+import { action_destroyer } from 'svelte/internal'
 
 export default function Modal() {
   const [isOpen, setIsOpen] = React.useState(false)
+  const [isOpen2, setIsOpen2] = React.useState(false)
+
   const [isLoading, setIsLoading] = React.useState(false)
 
   // Custom confirmation logic
@@ -17,13 +20,29 @@ export default function Modal() {
   }
   return (
     <>
-      {/* Modal toggle */}
-      <Button impact="light" onClick={() => setIsOpen(true)}>
-        Toggle modal
-      </Button>
+      <div className="flex gap-2">
+        <Button impact="light" onClick={() => setIsOpen(true)}>
+          Toggle modal 1
+        </Button>
+        <Button impact="light" onClick={() => setIsOpen2(true)}>
+          Toggle modal 2
+        </Button>
+      </div>
+
+      <ModalComponent
+        title="Whoaaaaa"
+        slideFrom="left"
+        isOpen={isOpen2}
+        onClose={setIsOpen2}
+        actions={{ confirm: { label: 'Ack!', action: () => setIsOpen2(false) } }}
+      >
+        <p>I am the component 2. I should be a little longer, but I don't have any cancel setup.</p>
+      </ModalComponent>
+
       <ModalComponent
         isOpen={isOpen}
         onClose={setIsOpen}
+        slideFrom="top"
         title="Confirm Subscription"
         description="Membership subscription confirmation"
         actions={{

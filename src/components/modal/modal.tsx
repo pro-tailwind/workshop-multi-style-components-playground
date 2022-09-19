@@ -8,7 +8,6 @@ interface ModalProps {
   description?: string
   isOpen: boolean
   onClose: () => void
-  children: React.ReactNode
   actions: {
     cancel?: {
       label: string
@@ -17,9 +16,11 @@ interface ModalProps {
     confirm: {
       label: string
       action: () => void
-      loading: boolean
+      loading?: boolean
     }
   }
+  slideFrom: 'top' | 'right' | 'bottom' | 'left'
+  children: React.ReactNode
 }
 
 export default function Modal({
@@ -28,8 +29,27 @@ export default function Modal({
   isOpen,
   onClose,
   actions,
+  slideFrom = 'bottom',
   children,
 }: ModalProps) {
+  const slideFromClasses = {
+    top: {
+      from: '-translate-y-24',
+      to: 'translate-y-0',
+    },
+    right: {
+      from: 'translate-x-24',
+      to: 'translate-x-0',
+    },
+    bottom: {
+      from: 'translate-y-24',
+      to: 'translate-y-0',
+    },
+    left: {
+      from: '-translate-x-24',
+      to: 'translate-x-0',
+    },
+  }
   return (
     <div>
       {/* Modal */}
@@ -50,8 +70,8 @@ export default function Modal({
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
               <Transition.Child
                 enter="transition"
-                enterFrom="opacity-0 translate-y-12"
-                enterTo="opacity-100 translate-y-0"
+                enterFrom={`opacity-0 ${slideFromClasses[slideFrom].from}`}
+                enterTo={`opacity-100 ${slideFromClasses[slideFrom].to}`}
                 leave="transition"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
@@ -79,7 +99,7 @@ export default function Modal({
                         <span className="flex gap-4 items-center">
                           <span>{actions.confirm.label}</span>
                           <Transition
-                            show={actions.confirm.loading}
+                            show={!!actions.confirm.loading}
                             enter="transition ease-out"
                             enterFrom="scale-0"
                             enterTo="scale-100"
