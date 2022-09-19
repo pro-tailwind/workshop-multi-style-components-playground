@@ -22,15 +22,16 @@ export default function Modal() {
     <>
       <div className="flex gap-2">
         <Button impact="light" onClick={() => setIsOpen(true)}>
-          Toggle modal 1
+          Medium, from top
         </Button>
         <Button impact="light" onClick={() => setIsOpen2(true)}>
-          Toggle modal 2
+          Large, from left
         </Button>
       </div>
 
       <ModalComponent
         title="Whoaaaaa"
+        size="large"
         slideFrom="left"
         isOpen={isOpen2}
         onClose={setIsOpen2}

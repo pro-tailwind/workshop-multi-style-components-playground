@@ -1,6 +1,8 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
+import { cx } from '../../utils'
+
 import Button from '../button'
 
 interface ModalProps {
@@ -20,6 +22,7 @@ interface ModalProps {
     }
   }
   slideFrom: 'top' | 'right' | 'bottom' | 'left'
+  size: 'small' | 'medium' | 'large'
   children: React.ReactNode
 }
 
@@ -30,8 +33,17 @@ export default function Modal({
   onClose,
   actions,
   slideFrom = 'bottom',
+  size = 'medium',
   children,
 }: ModalProps) {
+  // ------------------------------
+  // Styles lookup
+  // ------------------------------
+  const sizeClasses = {
+    small: 'sm:max-w-sm',
+    medium: 'sm:max-w-lg',
+    large: 'sm:max-w-3xl',
+  }
   const slideFromClasses = {
     top: {
       from: '-translate-y-16',
@@ -52,7 +64,6 @@ export default function Modal({
   }
   return (
     <div>
-      {/* Modal */}
       <Transition.Root show={isOpen}>
         <Dialog onClose={onClose} className="relative z-10">
           <Transition.Child
@@ -70,13 +81,18 @@ export default function Modal({
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
               <Transition.Child
                 enter="transition duration-300"
-                enterFrom={`opacity-0 ${slideFromClasses[slideFrom].from}`}
-                enterTo={`opacity-100 ${slideFromClasses[slideFrom].to}`}
+                enterFrom={cx('opacity-0', slideFromClasses[slideFrom].from)}
+                enterTo={cx('opacity-100', slideFromClasses[slideFrom].to)}
                 leave="transition"
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 sm:w-full sm:max-w-lg">
+                <Dialog.Panel
+                  className={cx(
+                    'relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 w-full',
+                    sizeClasses[size]
+                  )}
+                >
                   <div className="bg-white p-4 sm:p-6">
                     <div className="text-center sm:text-left">
                       <Dialog.Title
