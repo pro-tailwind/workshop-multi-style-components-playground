@@ -37,20 +37,20 @@ export default function ModalDemo() {
       </div>
 
       <Modal
+        title="Confirm Subscription"
+        slideFrom="top"
         isOpen={isOpen}
         onClose={setIsOpen}
-        slideFrom="top"
-        title="Confirm Subscription"
-        description="Membership subscription confirmation"
+        onCloseComplete={() => setIsLoading(false)}
         actions={{
           confirm: {
             label: 'Yes, confirm',
             action: handleConfirm,
             loading: isLoading,
-            afterLeave: () => setIsLoading(false),
           },
           cancel: { label: 'Cancel', action: () => setIsOpen(false) },
         }}
+        description="Membership subscription confirmation"
       >
         <p className="text-slate-500">
           You're about to confirm your{' '}
@@ -68,13 +68,13 @@ export default function ModalDemo() {
         slideFrom="left"
         isOpen={isOpen2}
         onClose={setIsOpen2}
+        onCloseComplete={() => setIsLoading(false)}
         actions={{
           cancel: { label: 'Cancel', action: () => setIsOpen2(false) },
           confirm: {
             label: 'YOLO, delete it!',
             action: handleConfirm2,
             loading: isLoading,
-            afterLeave: () => setIsLoading(false),
           },
         }}
       >

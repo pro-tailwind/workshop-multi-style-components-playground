@@ -15,6 +15,7 @@ type ModalProps = React.ComponentProps & {
   tone?: 'default' | 'danger' | 'success'
   isOpen: boolean
   onClose: () => void
+  onCloseComplete: () => void
   actions: {
     cancel?: {
       label: string
@@ -24,7 +25,6 @@ type ModalProps = React.ComponentProps & {
       label: string
       action: () => void
       loading?: boolean
-      afterLeave?: () => void
     }
   }
 }
@@ -71,6 +71,7 @@ export default function Modal({
   description,
   isOpen,
   onClose,
+  onCloseComplete,
   actions,
   slideFrom = 'bottom',
   size = 'medium',
@@ -89,7 +90,7 @@ export default function Modal({
             leave="transition ease-in"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            afterLeave={actions.confirm.afterLeave}
+            afterLeave={onCloseComplete}
           >
             <div
               className={cx('fixed inset-0 bg-opacity-75 transition-opacity', overlayClasses[tone])}
