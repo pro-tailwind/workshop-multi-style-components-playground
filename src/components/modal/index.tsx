@@ -2,36 +2,43 @@ import React from 'react'
 
 import ModalComponent from './modal'
 import Button from '../button'
-import { action_destroyer } from 'svelte/internal'
 
 export default function Modal() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [isOpen2, setIsOpen2] = React.useState(false)
+  const [isOpen3, setIsOpen3] = React.useState(false)
 
   const [isLoading, setIsLoading] = React.useState(false)
 
-  // Custom confirmation logic
   function handleConfirm() {
     setIsLoading(true)
     setTimeout(() => {
       setIsOpen(false)
     }, 3000)
   }
+  function handleConfirm2() {
+    setIsLoading(true)
+    setTimeout(() => {
+      setIsOpen2(false)
+    }, 3000)
+  }
   return (
     <>
       <div className="flex gap-2">
         <Button impact="light" onClick={() => setIsOpen(true)}>
-          Medium, from top
+          Default dialog
         </Button>
-        <Button impact="light" onClick={() => setIsOpen2(true)}>
-          Large, from left
+        <Button tone="danger" impact="light" onClick={() => setIsOpen2(true)}>
+          Danger dialog
+        </Button>
+        <Button tone="success" impact="light" onClick={() => setIsOpen3(true)}>
+          Success dialog
         </Button>
       </div>
 
       <ModalComponent
         isOpen={isOpen}
         onClose={setIsOpen}
-        setIsLoading={setIsLoading}
         slideFrom="top"
         title="Confirm Subscription"
         description="Membership subscription confirmation"
@@ -56,17 +63,38 @@ export default function Modal() {
       </ModalComponent>
 
       <ModalComponent
-        title="Hang on a second!"
-        size="large"
+        title="Delete account permanently?"
+        tone="danger"
         slideFrom="left"
         isOpen={isOpen2}
         onClose={setIsOpen2}
-        actions={{ confirm: { label: 'Ack!', action: () => setIsOpen2(false) } }}
+        actions={{
+          cancel: { label: 'Cancel', action: () => setIsOpen2(false) },
+          confirm: {
+            label: 'YOLO, delete it!',
+            action: handleConfirm2,
+            loading: isLoading,
+            afterLeave: () => setIsLoading(false),
+          },
+        }}
       >
-        <p>
-          Just wanted to let you know that we're working hard on finding a better solution for this.
-          We'll keep you updated as soon as we've got something to show you!
-        </p>
+        <p>Are you really sure you want to delete this account? This operation cannot be undone.</p>
+      </ModalComponent>
+
+      <ModalComponent
+        title="Welcome to the team 🎉"
+        isOpen={isOpen3}
+        onClose={setIsOpen3}
+        tone="success"
+        actions={{
+          confirm: {
+            label: 'View your dashboard',
+            action: () => setIsOpen3(false),
+          },
+        }}
+      >
+        <p>Ooooh yeah, your account has been successfully created.</p>
+        <p className="mt-2">One of us! One of us!</p>
       </ModalComponent>
     </>
   )

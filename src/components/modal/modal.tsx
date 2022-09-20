@@ -10,9 +10,11 @@ import { cx } from '../../utils'
 interface ModalProps {
   title: string
   description?: string
+  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
+  size?: 'small' | 'medium' | 'large'
+  tone?: 'default' | 'danger' | 'success'
   isOpen: boolean
   onClose: () => void
-  setIsLoading?: (isLoading: boolean) => void
   actions: {
     cancel?: {
       label: string
@@ -20,14 +22,11 @@ interface ModalProps {
     }
     confirm: {
       label: string
-      loading?: boolean
       action: () => void
+      loading?: boolean
       afterLeave?: () => void
     }
   }
-  slideFrom: 'top' | 'right' | 'bottom' | 'left'
-  size: 'small' | 'medium' | 'large'
-  children: React.ReactNode
 }
 
 // ------------------------------
@@ -57,6 +56,12 @@ const slideFromClasses = {
   },
 }
 
+const overlayClasses = {
+  default: 'bg-indigo-300',
+  danger: 'bg-red-300',
+  success: 'bg-green-300',
+}
+
 // ---------------------------------
 // Component
 // ---------------------------------
@@ -65,10 +70,10 @@ export default function Modal({
   description,
   isOpen,
   onClose,
-  setIsLoading,
   actions,
   slideFrom = 'bottom',
   size = 'medium',
+  tone = 'default',
   children,
 }: ModalProps) {
   return (
@@ -82,9 +87,11 @@ export default function Modal({
             leave="transition ease-in"
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
-            afterLeave={() => setIsLoading && setIsLoading(false)}
+            afterLeave={actions.confirm.afterLeave}
           >
-            <div className="fixed inset-0 bg-indigo-300 bg-opacity-75 transition-opacity"></div>
+            <div
+              className={cx('fixed inset-0 bg-opacity-75 transition-opacity', overlayClasses[tone])}
+            ></div>
           </Transition.Child>
           <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
@@ -121,7 +128,11 @@ export default function Modal({
                   <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
                     {/* Confirm button */}
                     {actions.confirm && (
-                      <Button onClick={actions.confirm.action} disabled={actions.confirm.loading}>
+                      <Button
+                        tone={tone}
+                        onClick={actions.confirm.action}
+                        disabled={actions.confirm.loading}
+                      >
                         <span className="flex gap-4 items-center">
                           <span>{actions.confirm.label}</span>
                           <LoadingSpinner show={!!actions.confirm.loading} />
@@ -131,6 +142,7 @@ export default function Modal({
                     {/* Cancel button button */}
                     {actions.cancel && (
                       <Button
+                        tone={tone}
                         disabled={actions.confirm.loading}
                         impact="none"
                         onClick={actions.cancel.action}
