@@ -2,9 +2,9 @@ import React from 'react'
 import { cx } from '../utils'
 
 // ------------------------------
-// Possible prop values for `size`, `impact` and `shape`
+// Prop types
 // ------------------------------
-interface ButtonProps extends React.ComponentProps<'button'> {
+type ButtonProps = React.ComponentProps<'button'> & {
   size?: 'small' | 'medium' | 'large'
   impact?: 'bold' | 'light' | 'none'
   tone?: 'default' | 'danger' | 'success'
