@@ -7,7 +7,7 @@ import { cx } from '../../utils'
 // ---------------------------------
 // Prop types
 // ---------------------------------
-interface ModalProps {
+type ModalProps = React.ComponentProps & {
   title: string
   description?: string
   slideFrom?: 'top' | 'right' | 'bottom' | 'left'

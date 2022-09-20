@@ -1,9 +1,9 @@
 import React from 'react'
 
-import ModalComponent from './modal'
+import Modal from './modal'
 import Button from '../button'
 
-export default function Modal() {
+export default function ModalDemo() {
   const [isOpen, setIsOpen] = React.useState(false)
   const [isOpen2, setIsOpen2] = React.useState(false)
   const [isOpen3, setIsOpen3] = React.useState(false)
@@ -36,7 +36,7 @@ export default function Modal() {
         </Button>
       </div>
 
-      <ModalComponent
+      <Modal
         isOpen={isOpen}
         onClose={setIsOpen}
         slideFrom="top"
@@ -60,9 +60,9 @@ export default function Modal() {
           . Your account will be billed for a one-year membership. We just want to make sure you
           understand that.
         </p>
-      </ModalComponent>
+      </Modal>
 
-      <ModalComponent
+      <Modal
         title="Delete account permanently?"
         tone="danger"
         slideFrom="left"
@@ -79,13 +79,13 @@ export default function Modal() {
         }}
       >
         <p>Are you really sure you want to delete this account? This operation cannot be undone.</p>
-      </ModalComponent>
+      </Modal>
 
-      <ModalComponent
+      <Modal
         title="Welcome to the team 🎉"
+        tone="success"
         isOpen={isOpen3}
         onClose={setIsOpen3}
-        tone="success"
         actions={{
           confirm: {
             label: 'View your dashboard',
@@ -95,7 +95,7 @@ export default function Modal() {
       >
         <p>Ooooh yeah, your account has been successfully created.</p>
         <p className="mt-2">One of us! One of us!</p>
-      </ModalComponent>
+      </Modal>
     </>
   )
 }
