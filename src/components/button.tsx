@@ -2,6 +2,16 @@ import React from 'react'
 import { cx } from '../utils'
 
 // ------------------------------
+// Possible prop values for `size`, `impact` and `shape`
+// ------------------------------
+interface ButtonProps extends React.ComponentProps<'button'> {
+  size?: 'small' | 'medium' | 'large'
+  impact?: 'bold' | 'light' | 'none'
+  tone?: 'default' | 'danger' | 'success'
+  shape?: 'square' | 'rounded' | 'pill'
+}
+
+// ------------------------------
 // Tailwind Classes lookup directory
 // ------------------------------
 const baseClasses =
@@ -37,17 +47,7 @@ const shapeClasses = {
 }
 
 // ------------------------------
-// Possible prop values for `size`, `impact` and `shape`
-// ------------------------------
-interface ButtonProps extends React.ComponentProps<'button'> {
-  size?: 'small' | 'medium' | 'large'
-  impact?: 'bold' | 'light' | 'none'
-  tone?: 'default' | 'danger' | 'success'
-  shape?: 'square' | 'rounded' | 'pill'
-}
-
-// ------------------------------
-// Component definition (with default variants)
+// Main component
 // ------------------------------
 const Button = ({
   size = 'medium',
@@ -59,12 +59,6 @@ const Button = ({
   return (
     <button
       {...restProps}
-      /* 
-        ------------------------------
-        2. Add the appropriate `sizeClasses` and `shapeClasses` values to the 
-        className attribute below.
-        ------------------------------
-      */
       className={cx(
         baseClasses,
         impactClasses[tone][impact],

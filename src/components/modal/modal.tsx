@@ -37,6 +37,13 @@ const sizeClasses = {
   medium: 'sm:max-w-lg',
   large: 'sm:max-w-3xl',
 }
+
+const overlayClasses = {
+  default: 'bg-indigo-300',
+  danger: 'bg-red-300',
+  success: 'bg-green-300',
+}
+
 const slideFromClasses = {
   top: {
     from: '-translate-y-16',
@@ -56,14 +63,8 @@ const slideFromClasses = {
   },
 }
 
-const overlayClasses = {
-  default: 'bg-indigo-300',
-  danger: 'bg-red-300',
-  success: 'bg-green-300',
-}
-
 // ---------------------------------
-// Component
+// Main Component
 // ---------------------------------
 export default function Modal({
   title,
@@ -80,6 +81,7 @@ export default function Modal({
     <div>
       <Transition.Root show={isOpen}>
         <Dialog onClose={onClose} className="relative z-10">
+          {/* Background overlay */}
           <Transition.Child
             enter="transition ease-out"
             enterFrom="opacity-0"
@@ -93,8 +95,10 @@ export default function Modal({
               className={cx('fixed inset-0 bg-opacity-75 transition-opacity', overlayClasses[tone])}
             ></div>
           </Transition.Child>
+
           <div className="fixed inset-0 z-10 overflow-y-auto">
             <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+              {/* Modal panel */}
               <Transition.Child
                 enter="transition duration-300"
                 enterFrom={cx('opacity-0', slideFromClasses[slideFrom].from)}
