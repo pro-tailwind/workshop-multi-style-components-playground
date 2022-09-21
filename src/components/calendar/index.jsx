@@ -13,13 +13,13 @@ import { makeCalendarAvailabilities } from '../../utils'
 // Calendar
 // ----------------------------
 export default function Calendar() {
-  const [selectedDate, setSelectedDate] = React.useState(today())
+  const [selectedDate, setSelectedDate] = React.useState(today('Australia/Sydney'))
   const bookingAvailabilities = makeCalendarAvailabilities(16, { includeToday: false })
   const { locale } = useLocale()
 
   const props = {
-    minValue: today(),
-    maxValue: today().add({ months: 6 }),
+    minValue: today('Australia/Sydney'),
+    maxValue: today('Australia/Sydney').add({ months: 6 }),
     value: selectedDate,
     onChange: setSelectedDate,
     bookingAvailabilities,
