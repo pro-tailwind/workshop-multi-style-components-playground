@@ -1,21 +1,21 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import Button from '../button'
+import Button, { ButtonProps } from '../button'
 import { cx } from '../../utils'
 
 // ---------------------------------
 // Prop types
 // ---------------------------------
-type ModalProps = React.ComponentProps & {
+type ModalProps = {
   title: string
   description?: string
   slideFrom?: 'top' | 'right' | 'bottom' | 'left'
   size?: 'small' | 'medium' | 'large'
-  tone?: 'default' | 'danger' | 'success'
+  tone?: ButtonProps['tone']
   isOpen: boolean
-  onClose: () => void
-  onCloseComplete: () => void
+  onClose: React.Dispatch<React.SetStateAction<boolean>>
+  onCloseComplete?: () => void
   actions: {
     cancel?: {
       label: string
@@ -32,19 +32,19 @@ type ModalProps = React.ComponentProps & {
 // ------------------------------
 // Styles lookup
 // ------------------------------
-const sizeClasses = {
+const sizeClasses: Record<ModalProps['size'], string> = {
   small: 'sm:max-w-sm',
   medium: 'sm:max-w-lg',
   large: 'sm:max-w-3xl',
 }
 
-const overlayClasses = {
+const overlayClasses: Record<ModalProps['tone'], string> = {
   default: 'bg-indigo-300',
   danger: 'bg-red-300',
   success: 'bg-green-300',
 }
 
-const slideFromClasses = {
+const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {
   top: {
     from: '-translate-y-16',
     to: 'translate-y-0',
@@ -77,7 +77,7 @@ export default function Modal({
   size = 'medium',
   tone = 'default',
   children,
-}: ModalProps) {
+}: ModalProps & React.ComponentProps<'div'>) {
   return (
     <div>
       <Transition.Root show={isOpen}>
@@ -116,10 +116,7 @@ export default function Modal({
                 >
                   <div className="bg-white p-4 sm:p-6">
                     <div className="text-center sm:text-left">
-                      <Dialog.Title
-                        className="text-xl font-semibold leading-6 text-slate-900"
-                        id="modal-title"
-                      >
+                      <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
                         {title}
                       </Dialog.Title>
                       <div className="mt-4">

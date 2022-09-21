@@ -4,7 +4,7 @@ import { cx } from '../utils'
 // ------------------------------
 // Prop types
 // ------------------------------
-type ButtonProps = React.ComponentProps<'button'> & {
+export type ButtonProps = {
   size?: 'small' | 'medium' | 'large'
   impact?: 'bold' | 'light' | 'none'
   tone?: 'default' | 'danger' | 'success'
@@ -17,7 +17,7 @@ type ButtonProps = React.ComponentProps<'button'> & {
 const baseClasses =
   'font-semibold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50'
 
-const impactClasses = {
+const impactClasses: Record<ButtonProps['tone'], Record<ButtonProps['impact'], string>> = {
   default: {
     bold: 'bg-indigo-500 text-white shadow-md hover:bg-indigo-600 focus-visible:ring-indigo-500',
     light: 'bg-indigo-100 text-indigo-700 hover:bg-indigo-200 focus-visible:ring-indigo-500',
@@ -35,12 +35,13 @@ const impactClasses = {
   },
 }
 
-const sizeClasses = {
+const sizeClasses: Record<ButtonProps['size'], string> = {
   small: 'px-3 py-1 text-sm',
   medium: 'px-5 py-2',
   large: 'px-7 py-2.5 text-lg',
 }
-const shapeClasses = {
+
+const shapeClasses: Record<ButtonProps['shape'], string> = {
   square: '',
   rounded: 'rounded',
   pill: 'rounded-full',
@@ -55,7 +56,7 @@ const Button = ({
   tone = 'default',
   shape = 'rounded',
   ...restProps
-}: ButtonProps) => {
+}: ButtonProps & React.ComponentProps<'button'>) => {
   return (
     <button
       {...restProps}
