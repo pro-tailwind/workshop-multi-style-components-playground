@@ -40,7 +40,7 @@ export default function ModalDemo() {
         title="Confirm Subscription"
         slideFrom="top"
         isOpen={isOpen}
-        onClose={setIsOpen}
+        onClose={() => setIsOpen(false)}
         onCloseComplete={() => setIsLoading(false)}
         actions={{
           confirm: {
@@ -67,7 +67,7 @@ export default function ModalDemo() {
         tone="danger"
         slideFrom="left"
         isOpen={isOpen2}
-        onClose={setIsOpen2}
+        onClose={() => setIsOpen2(false)}
         onCloseComplete={() => setIsLoading(false)}
         actions={{
           cancel: { label: 'Cancel', action: () => setIsOpen2(false) },
@@ -85,7 +85,7 @@ export default function ModalDemo() {
         title="Welcome to the team 🎉"
         tone="success"
         isOpen={isOpen3}
-        onClose={setIsOpen3}
+        onClose={() => setIsOpen3(false)}
         actions={{
           confirm: {
             label: 'View your dashboard',

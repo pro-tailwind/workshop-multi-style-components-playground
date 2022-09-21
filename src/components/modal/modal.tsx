@@ -14,7 +14,7 @@ type ModalProps = {
   size?: 'small' | 'medium' | 'large'
   tone?: ButtonProps['tone']
   isOpen: boolean
-  onClose: React.Dispatch<React.SetStateAction<boolean>>
+  onClose: () => void
   onCloseComplete?: () => void
   actions: {
     cancel?: {
