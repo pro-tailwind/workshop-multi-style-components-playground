@@ -4,7 +4,7 @@ import Container from '../components/container.astro'
 
 import CalendarReference from '../components/reference'
 import Calendar from '../components/calendar'
-import HardcodedDays from '../components/reference/hardcoded-days.astro'
+import DayStatusTable from '../components/reference/day-status-table.astro'
 ---
 
 <Layout title="Refactoring creeping complexity">
@@ -20,7 +20,7 @@ import HardcodedDays from '../components/reference/hardcoded-days.astro'
       </div>
     </div>
     <div class="py-32">
-      <HardcodedDays />
+      <DayStatusTable />
     </div>
   </Container>
 </Layout>
