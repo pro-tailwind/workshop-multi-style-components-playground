@@ -9,6 +9,7 @@ import * as React from 'react'
 import { useCalendarCell } from 'react-aria'
 import { isSameDay, parseDateTime, isToday, getLocalTimeZone } from '@internationalized/date'
 
+import { Status, baseClasses, statusClasses } from './availability-status'
 import { cx } from '../../utils'
 
 // ------------------------------
@@ -45,30 +46,6 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     ------------------------
     ---------------------
   */
-
-  /* 
-    We've identified that a calendar day will always be in 
-    one of these states, or "availability statuses",
-    represented by the `Status` type:
-  */
-  type Status = 'DISABLED' | 'SELECTED' | 'NO_VACANCY' | 'TODAY_NO_VACANCY' | 'VACANCY'
-
-  // ------------------------------
-  // Styles lookup dictionary
-  // ------------------------------
-
-  // Common classes to all statuses
-  const baseClasses =
-    'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
-
-  // Status-specific classes
-  const statusClasses: Record<Status, string> = {
-    DISABLED: 'text-slate-300 pointer-events-none',
-    SELECTED: 'bg-indigo-600 text-white font-bold bg-stripes',
-    NO_VACANCY: 'text-slate-900 hover:bg-slate-100',
-    TODAY_NO_VACANCY: 'text-indigo-600 font-bold hover:bg-slate-100',
-    VACANCY: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
-  }
 
   /* 
     We need to determine _what_ status the day is actually in.
@@ -108,16 +85,15 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
             I think we can agree our new logic is easier to follow!
           */
 
-          // calendarClasses.base,
-          // isSelected && calendarClasses.selected,
-          // isDisabled && calendarClasses.disabled,
-          // isCurrentDay && !isSelected && calendarClasses.today,
-          // hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
+          // isSelected && dynamicClasses.selected,
+          // isDisabled && dynamicClasses.disabled,
+          // isCurrentDay && !isSelected && dynamicClasses.today,
+          // hasAvailability && !isDisabled && !isSelected && dynamicClasses.hasAvailability,
           // !hasAvailability &&
           //   !isCurrentDay &&
           //   !isDisabled &&
           //   !isSelected &&
-          //   calendarClasses.candidate
+          //   dynamicClasses.candidate
         )}
       >
         <span>{formattedDate}</span>

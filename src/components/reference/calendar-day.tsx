@@ -28,13 +28,15 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
   // ------------------------------
   // Styles lookup dictionary
   // ------------------------------
-  const calendarClasses = {
-    base: 'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400',
-    selected: 'bg-indigo-600 text-white font-bold bg-stripes',
+  const baseClasses =
+    'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
+
+  const dynamicClasses = {
     disabled: 'text-slate-300 pointer-events-none',
-    today: 'text-indigo-600 font-bold hover:bg-slate-100',
-    hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
     candidate: 'hover:bg-slate-100 text-slate-900',
+    hasAvailability: 'bg-indigo-100 text-indigo-600 font-bold hover:bg-indigo-200',
+    today: 'text-indigo-600 font-bold hover:bg-slate-100',
+    selected: 'bg-indigo-600 text-white font-bold bg-stripes',
   }
 
   return (
@@ -45,16 +47,16 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
         ref={ref}
         hidden={isOutsideVisibleRange}
         className={cx(
-          calendarClasses.base,
-          isSelected && calendarClasses.selected,
-          isDisabled && calendarClasses.disabled,
-          isCurrentDay && !isSelected && calendarClasses.today,
-          hasAvailability && !isDisabled && !isSelected && calendarClasses.hasAvailability,
+          baseClasses,
+          isSelected && dynamicClasses.selected,
+          isDisabled && dynamicClasses.disabled,
+          isCurrentDay && !isSelected && dynamicClasses.today,
+          hasAvailability && !isDisabled && !isSelected && dynamicClasses.hasAvailability,
           !hasAvailability &&
             !isCurrentDay &&
             !isDisabled &&
             !isSelected &&
-            calendarClasses.candidate
+            dynamicClasses.candidate
         )}
       >
         <span>{formattedDate}</span>

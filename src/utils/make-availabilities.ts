@@ -1,21 +1,21 @@
-import { today, getDayOfWeek } from '@internationalized/date'
+import { today, getDayOfWeek, getLocalTimeZone } from '@internationalized/date'
 
-// Lite `classnames` merging functionality
-export function cx(...classes) {
-  return classes.filter(Boolean).join(' ')
-}
+const localTimezone = getLocalTimeZone()
+const currentDay = today(localTimezone)
 
 // Mocking calendar dates
 export function makeCalendarAvailabilities(weeks, options) {
-  const weekDay = getDayOfWeek(today(), 'en-US')
+  const weekDay = getDayOfWeek(currentDay, 'en-US')
   const offset = 1 - weekDay
   const nextMonday =
-    weekDay === 1 ? today().add({ days: offset }) : today().add({ days: offset }).add({ weeks: 1 })
+    weekDay === 1
+      ? currentDay.add({ days: offset })
+      : currentDay.add({ days: offset }).add({ weeks: 1 })
 
   const output = []
 
   if (options.includeToday) {
-    output.push({ startTime: today().toString(), endTime: today().toString() })
+    output.push({ startTime: currentDay.toString(), endTime: currentDay.toString() })
   }
 
   let i = 0

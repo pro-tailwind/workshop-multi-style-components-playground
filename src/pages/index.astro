@@ -4,11 +4,12 @@ import Container from '../components/container.astro'
 
 import CalendarReference from '../components/reference'
 import Calendar from '../components/calendar'
-import DayStatusTable from '../components/reference/day-status-table.astro'
+import DayStatusTable from '../components/calendar/day-status-table.astro'
+import DayStatusTableReference from '../components/reference/day-status-table.astro'
 ---
 
 <Layout title="Refactoring creeping complexity">
-  <Container class="mt-20">
+  <Container class="my-20">
     <div class="grid lg:grid-cols-2 gap-x-32 gap-y-20 justify-center">
       <div class="max-w-md">
         <h2 class="uppercase text-blue-500 tracking-widest text-sm font-semibold">Refactoring</h2>
@@ -18,9 +19,12 @@ import DayStatusTable from '../components/reference/day-status-table.astro'
         <h2 class="uppercase text-red-500 tracking-widest text-sm font-semibold">Reference</h2>
         <CalendarReference client:only="react" />
       </div>
-    </div>
-    <div class="py-32">
-      <DayStatusTable />
+      <div>
+        <DayStatusTable />
+      </div>
+      <div>
+        <DayStatusTableReference />
+      </div>
     </div>
   </Container>
 </Layout>
