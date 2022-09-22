@@ -27,7 +27,7 @@ export const baseClasses =
 
   We're using a TypeScrip `Record` here to ensure we 
   create a key for each status. This is why the 
-  `availabilityStatus` object is currently
+  `statusClasses` object is currently
   underlined in red squigglies.
 
   Your challenge populate that `statusClasses` object below with 
