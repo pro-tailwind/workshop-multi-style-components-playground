@@ -32,26 +32,19 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     isSameDay(parseDateTime(availability.startTime), date)
   )
 
-  /* 
-    ------------------------------
-    ------------------------------
-    === WORKSHOP CHALLENGE ===
-    All our work is happening 
-    below this comment.
-
-    Note that we have moved our `Status` styles in this file,
-    since we no longed need to access them in other files.
-    ------------------------------
-    ------------------------------
-  */
-
   // ------------------------------
   // Styles lookup dictionary
   // ------------------------------
   const baseClasses =
     'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
 
-  // Calendar day statuses
+  /* 
+    ------------------------------
+    Note that we have moved our `Status` type and styles in this file,
+    since we no longed need to access them in other places.
+    ------------------------------
+  */
+
   type Status = 'DISABLED' | 'SELECTED' | 'NO_VACANCY' | 'TODAY_NO_VACANCY' | 'VACANCY'
 
   const statusClasses: Record<Status, string> = {
@@ -66,14 +59,12 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     ------------------------------
     ## CHALLENGE ##
     1. Delete the legacy `dynamicClasses` styles object below.
-    This is going to break the Calendar UI in the browser,
-    but that's all part of the refactoring plan!
-    
-    You'll also need to delete all references to the
-    `dynamicClasses` object in the `className` of
-    the returned JSX.
+    WARNING: this will break the page 💥
+
+    You'll also need to delete all references to the `dynamicClasses` 
+    object in the `className` attribute of the returned JSX.
     ------------------------------
-    */
+  */
   const dynamicClasses = {
     disabled: 'text-slate-300 pointer-events-none',
     selected: 'bg-indigo-600 text-white font-bold bg-stripes',
@@ -90,7 +81,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
     ------------------------------
   */
   type GetStatus = () => Status
-  const getAvailibilityStatus: GetStatus = function () {
+  const getStatus: GetStatus = function () {
     // TODO: Return the correct availability status
   }
 
