@@ -1,27 +1,33 @@
 import * as React from 'react'
 import { useCalendar, useCalendarGrid, useButton, useLocale, useDateFormatter } from 'react-aria'
 import { useCalendarState } from 'react-stately'
-import { createCalendar, getWeeksInMonth, startOfWeek, today } from '@internationalized/date'
+import {
+  createCalendar,
+  getWeeksInMonth,
+  startOfWeek,
+  today,
+  getLocalTimeZone,
+} from '@internationalized/date'
 
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
 
 import CalendarDay from './calendar-day'
-
 import { makeCalendarAvailabilities } from '../../utils'
 
 // ----------------------------
 // Calendar
 // ----------------------------
 export default function Calendar() {
-  const [selectedDate, setSelectedDate] = React.useState(today())
-  const bookingAvailabilities = makeCalendarAvailabilities(16, { includeToday: true })
+  const localTimezone = getLocalTimeZone()
+  const [selectedDate, setSelectedDate] = React.useState(today(localTimezone))
+  const bookingAvailabilities = makeCalendarAvailabilities(16, { includeToday: false })
   const { locale } = useLocale()
 
   const props = {
-    minValue: today(),
-    maxValue: today().add({ months: 6 }),
+    minValue: today(localTimezone),
+    maxValue: today(localTimezone).add({ months: 6 }),
     value: selectedDate,
-    onChange: setSelectedDate,
+    onChange: (date) => setSelectedDate(date),
     bookingAvailabilities,
   }
 
@@ -32,7 +38,7 @@ export default function Calendar() {
   })
 
   const ref = React.useRef()
-  const { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(props, state, ref)
+  const { calendarProps, prevButtonProps, nextButtonProps, title } = useCalendar(props, state)
 
   return (
     <div {...calendarProps} ref={ref} className="calendar">

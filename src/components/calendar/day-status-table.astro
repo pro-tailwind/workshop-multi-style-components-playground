@@ -1,0 +1,84 @@
+---
+import { baseClasses, statusClasses } from './availability-status'
+import { cx } from '../../utils'
+---
+
+<h2 class="uppercase text-blue-500 tracking-widest text-sm font-semibold">Availability status</h2>
+
+<table class="mt-4 divide-y-2 divide-blue-500">
+  <thead>
+    <tr class="divide-x">
+      <th class="px-4 py-2 text-right font-normal">Status</th>
+      <th class="px-4 py-2 text-center font-normal"></th>
+      <th class="px-4 py-2 text-center font-normal">Today</th>
+    </tr>
+  </thead>
+  <tbody class="divide-y">
+    <!-- DISABLED -->
+    <tr class="divide-x">
+      <td class="px-4 py-2 text-right">DISABLED</td>
+      <td class="px-4 py-2">
+        <div
+          role="button"
+          aria-disabled="true"
+          tabindex="-1"
+          class={cx(baseClasses, statusClasses['DISABLED'])}
+        >
+          <span>8</span>
+        </div>
+      </td>
+      <td class="px-4 py-2 text-center text-red-300 font-semibold text-sm">N/A</td>
+    </tr>
+
+    <!-- NO VACANCY -->
+    <tr class="divide-x">
+      <td class="px-4 py-2 text-right">NO VACANCY</td>
+      <td class="px-4 py-2">
+        <div role="button" tabindex="0" class={cx(baseClasses, statusClasses['NO_VACANCY'])}>
+          <span>18</span>
+        </div>
+      </td>
+      <td class="px-4 py-2">
+        <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['TODAY_NO_VACANCY'])}>
+          <span>16</span><span
+            class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-indigo-600"
+          ></span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- VACANCY -->
+    <tr class="divide-x">
+      <td class="px-4 py-2 text-right">VACANCY</td>
+      <td class="px-4 py-2">
+        <div role="button" tabindex="0" class={cx(baseClasses, statusClasses['VACANCY'])}>
+          <span>19</span>
+        </div>
+      </td>
+      <td class="px-4 py-2">
+        <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['VACANCY'])}>
+          <span>16</span><span
+            class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-indigo-600"
+          ></span>
+        </div>
+      </td>
+    </tr>
+
+    <!-- SELECTED -->
+    <tr class="divide-x">
+      <td class="px-4 py-2 text-right">SELECTED</td>
+      <td class="px-4 py-2">
+        <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['SELECTED'])}>
+          <span>22</span>
+        </div>
+      </td>
+      <td class="px-4 py-2">
+        <div tabindex="0" role="button" class={cx(baseClasses, statusClasses['SELECTED'])}>
+          <span>16</span><span
+            class="absolute bottom-2 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white"
+          ></span>
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
