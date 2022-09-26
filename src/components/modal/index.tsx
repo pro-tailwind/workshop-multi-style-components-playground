@@ -7,15 +7,29 @@ export default function ModalDemo() {
   const [isOpen, setIsOpen] = React.useState(false)
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    <main>
+      {/* 
+      ------------------------------
+      We use the `isOpen` piece of state to show/hide the modal.
+      The `setIsOpen` function is passed to the modal as an
+      `onClose` prop.
+      ------------------------------
+    */}
+      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
 
-      <main className="my-12 prose prose-slate mx-auto lg:prose-lg">
-        <div className="flex gap-2">
-          <Button impact="light" onClick={() => setIsOpen(true)}>
-            Open dialog
-          </Button>
-        </div>
+      {/* 
+      ------------------------------
+      Below this point, we have a `Button` component that toggles
+      the modal window, as well as some page copy to demo how 
+      the modal affects (or not) the page scrolling.
+      ------------------------------
+    */}
+
+      <div className="my-12 prose prose-slate mx-auto lg:prose-lg">
+        {/* The modal toggle */}
+        <Button impact="light" onClick={() => setIsOpen(true)}>
+          Open dialog
+        </Button>
 
         {/* Sample copy to demo scroll locking */}
         <h1 className="!mt-16">This is the page copy</h1>
@@ -257,102 +271,7 @@ export default function ModalDemo() {
           </li>
         </ul>
         <p>And finally a sentence to close off this section.</p>
-        <h2>There are other elements we need to style</h2>
-        <p>
-          I almost forgot to mention links, like{' '}
-          <a href="https://tailwindcss.com">this link to the Tailwind CSS website</a>. We almost
-          made them blue but that's so yesterday, so we went with dark gray, feels edgier.
-        </p>
-        <p>We even included table styles, check it out:</p>
-        <table>
-          <thead>
-            <tr>
-              <th>Wrestler</th>
-              <th>Origin</th>
-              <th>Finisher</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Bret "The Hitman" Hart</td>
-              <td>Calgary, AB</td>
-              <td>Sharpshooter</td>
-            </tr>
-            <tr>
-              <td>Stone Cold Steve Austin</td>
-              <td>Austin, TX</td>
-              <td>Stone Cold Stunner</td>
-            </tr>
-            <tr>
-              <td>Randy Savage</td>
-              <td>Sarasota, FL</td>
-              <td>Elbow Drop</td>
-            </tr>
-            <tr>
-              <td>Vader</td>
-              <td>Boulder, CO</td>
-              <td>Vader Bomb</td>
-            </tr>
-            <tr>
-              <td>Razor Ramon</td>
-              <td>Chuluota, FL</td>
-              <td>Razor's Edge</td>
-            </tr>
-          </tbody>
-        </table>
-        <p>
-          We also need to make sure inline code looks good, like if I wanted to talk about{' '}
-          <code>&lt;span&gt;</code> elements or tell you the good news about{' '}
-          <code>@tailwindcss/typography</code>.
-        </p>
-        <h3>
-          Sometimes I even use <code>code</code> in headings
-        </h3>
-        <p>
-          Even though it's probably a bad idea, and historically I've had a hard time making it look
-          good. This <em>"wrap the code blocks in backticks"</em> trick works pretty well though
-          really.
-        </p>
-        <p>
-          Another thing I've done in the past is put a <code>code</code> tag inside of a link, like
-          if I wanted to tell you about the{' '}
-          <a href="https://github.com/tailwindcss/docs">
-            <code>tailwindcss/docs</code>
-          </a>{' '}
-          repository. I don't love that there is an underline below the backticks but it is
-          absolutely not worth the madness it would require to avoid it.
-        </p>
-        <h4>
-          We haven't used an <code>h4</code> yet
-        </h4>
-        <p>
-          But now we have. Please don't use <code>h5</code> or <code>h6</code> in your content,
-          Medium only supports two heading levels for a reason, you animals. I honestly considered
-          using a <code>before</code> pseudo-element to scream at you if you use an <code>h5</code>{' '}
-          or <code>h6</code>.
-        </p>
-        <p>
-          We don't style them at all out of the box because <code>h4</code> elements are already so
-          small that they are the same size as the body copy. What are we supposed to do with an{' '}
-          <code>h5</code>, make it <em>smaller</em> than the body copy? No thanks.
-        </p>
-        <h3>We still need to think about stacked headings though.</h3>
-        <h4>
-          Let's make sure we don't screw that up with <code>h4</code> elements, either.
-        </h4>
-        <p>
-          Phew, with any luck we have styled the headings above this text and they look pretty good.
-        </p>
-        <p>
-          Let's add a closing paragraph here so things end with a decently sized block of text. I
-          can't explain why I want things to end that way but I have to assume it's because I think
-          things will look weird or unbalanced if there is a heading too close to the end of the
-          document.
-        </p>
-        <p>
-          What I've written here is probably long enough, but adding this final sentence can't hurt.
-        </p>
-      </main>
-    </>
+      </div>
+    </main>
   )
 }
