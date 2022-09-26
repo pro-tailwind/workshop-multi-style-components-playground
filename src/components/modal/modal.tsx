@@ -1,194 +1,67 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import Button, { ButtonProps } from '../button'
-import { cx } from '../../utils'
-
-// ---------------------------------
-// Prop types
-// ---------------------------------
-type ModalProps = {
-  title: string
-  description?: string
-  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
-  size?: 'small' | 'medium' | 'large'
-  tone?: ButtonProps['tone']
-  isOpen: boolean
-  onClose: () => void
-  onCloseComplete?: () => void
-  actions: {
-    cancel?: {
-      label: string
-      action: () => void
-    }
-    confirm: {
-      label: string
-      action: () => void
-      loading?: boolean
-    }
-  }
-}
-
-// ------------------------------
-// Styles lookup
-// ------------------------------
-const sizeClasses: Record<ModalProps['size'], string> = {
-  small: 'sm:max-w-sm',
-  medium: 'sm:max-w-lg',
-  large: 'sm:max-w-3xl',
-}
-
-const overlayClasses: Record<ModalProps['tone'], string> = {
-  default: 'bg-indigo-300',
-  danger: 'bg-red-300',
-  success: 'bg-green-300',
-}
-
-const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {
-  top: {
-    from: '-translate-y-16',
-    to: 'translate-y-0',
-  },
-  right: {
-    from: 'translate-x-16',
-    to: 'translate-x-0',
-  },
-  bottom: {
-    from: 'translate-y-16',
-    to: 'translate-y-0',
-  },
-  left: {
-    from: '-translate-x-16',
-    to: 'translate-x-0',
-  },
-}
+import Button from '../button'
 
 // ---------------------------------
 // Main Component
 // ---------------------------------
-export default function Modal({
-  title,
-  description,
-  isOpen,
-  onClose,
-  onCloseComplete,
-  actions,
-  slideFrom = 'bottom',
-  size = 'medium',
-  tone = 'default',
-  children,
-}: ModalProps & React.ComponentProps<'div'>) {
+export default function Modal({ isOpen, onClose }) {
   return (
-    <div>
-      <Transition.Root show={isOpen}>
-        <Dialog onClose={onClose} className="relative z-10">
-          {/* Background overlay */}
-          <Transition.Child
-            enter="transition ease-out"
-            enterFrom="opacity-0"
-            enterTo="opacity-100"
-            leave="transition ease-in"
-            leaveFrom="opacity-100"
-            leaveTo="opacity-0"
-            afterLeave={onCloseComplete}
-          >
-            <div
-              className={cx('fixed inset-0 bg-opacity-75 transition-opacity', overlayClasses[tone])}
-            ></div>
-          </Transition.Child>
-
-          <div className="fixed inset-0 z-10 overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-              {/* Modal panel */}
-              <Transition.Child
-                enter="transition duration-300"
-                enterFrom={cx('opacity-0', slideFromClasses[slideFrom].from)}
-                enterTo={cx('opacity-100', slideFromClasses[slideFrom].to)}
-                leave="transition"
-                leaveFrom="opacity-100 scale-100"
-                leaveTo="opacity-0 scale-95"
-              >
-                <Dialog.Panel
-                  className={cx(
-                    'relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 w-full',
-                    sizeClasses[size]
-                  )}
-                >
-                  <div className="bg-white p-4 sm:p-6">
-                    <div className="text-center sm:text-left">
-                      <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
-                        {title}
-                      </Dialog.Title>
-                      <div className="mt-4">
-                        {description && (
-                          <Dialog.Description className="sr-only">{description}</Dialog.Description>
-                        )}
-                        {children}
-                      </div>
+    <Transition.Root show={isOpen}>
+      <Dialog onClose={onClose} className="relative z-10">
+        {/* Background overlay */}
+        <Transition.Child
+          enter="transition ease-out"
+          enterFrom="opacity-0"
+          enterTo="opacity-100"
+          leave="transition ease-in"
+          leaveFrom="opacity-100"
+          leaveTo="opacity-0"
+        >
+          <div className="fixed inset-0 bg-opacity-75 transition-opacity bg-indigo-300"></div>
+        </Transition.Child>
+        <div className="fixed inset-0 z-10 overflow-y-auto">
+          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+            {/* Modal panel */}
+            <Transition.Child
+              enter="transition duration-300"
+              enterFrom="opacity-0 translate-y-16"
+              enterTo="opacity-100 translate-y-0"
+              leave="transition"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
+            >
+              <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 w-full sm:max-w-lg">
+                <div className="bg-white p-4 sm:p-6">
+                  <div className="text-center sm:text-left">
+                    <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
+                      Confirm subscription
+                    </Dialog.Title>
+                    <div className="mt-4">
+                      <p className="text-slate-500">
+                        You're about to confirm your{' '}
+                        <a className="underline text-indigo-600 hover:text-indigo-500" href="#">
+                          membership subscription
+                        </a>
+                        . Your account will be billed for a one-year membership. We just want to
+                        make sure you understand that.
+                      </p>
                     </div>
                   </div>
-                  <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
-                    {/* Confirm button */}
-                    {actions.confirm && (
-                      <Button
-                        tone={tone}
-                        onClick={actions.confirm.action}
-                        disabled={actions.confirm.loading}
-                      >
-                        <span className="flex gap-4 items-center">
-                          <span>{actions.confirm.label}</span>
-                          <LoadingSpinner show={!!actions.confirm.loading} />
-                        </span>
-                      </Button>
-                    )}
-                    {/* Cancel button button */}
-                    {actions.cancel && (
-                      <Button
-                        tone={tone}
-                        disabled={actions.confirm.loading}
-                        impact="none"
-                        onClick={actions.cancel.action}
-                      >
-                        {actions.cancel.label}
-                      </Button>
-                    )}
-                  </div>
-                </Dialog.Panel>
-              </Transition.Child>
-            </div>
+                </div>
+                {/* Action buttons */}
+                <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
+                  <Button onClick={onClose}>Confirm</Button>
+                  <Button impact="none" onClick={onClose}>
+                    Cancel
+                  </Button>
+                </div>
+              </Dialog.Panel>
+            </Transition.Child>
           </div>
-        </Dialog>
-      </Transition.Root>
-    </div>
-  )
-}
-
-// ---------------------------------
-// Implementation components
-// ---------------------------------
-function LoadingSpinner({ show }) {
-  return (
-    <Transition show={show} enter="transition ease-out" enterFrom="scale-0" enterTo="scale-100">
-      <svg
-        className="animate-spin h-5 w-5 text-white"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-      >
-        <circle
-          className="opacity-25"
-          cx="12"
-          cy="12"
-          r="10"
-          stroke="currentColor"
-          strokeWidth="4"
-        ></circle>
-        <path
-          className="opacity-75"
-          fill="currentColor"
-          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-        ></path>
-      </svg>
-    </Transition>
+        </div>
+      </Dialog>
+    </Transition.Root>
   )
 }

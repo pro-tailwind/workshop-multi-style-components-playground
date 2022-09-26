@@ -1,25 +1,19 @@
 import React from 'react'
 
-import SimpleModal from './simple-modal'
 import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = React.useState(false)
-  const [isOpen2, setIsOpen2] = React.useState(false)
 
   return (
     <>
-      {isOpen && <SimpleModal onClose={() => setIsOpen(false)} />}
-      {isOpen2 && <Modal onClose={() => setIsOpen2(false)} />}
+      <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} />
 
       <main className="my-12 prose prose-slate mx-auto lg:prose-lg">
         <div className="flex gap-2">
           <Button impact="light" onClick={() => setIsOpen(true)}>
-            Simple dialog
-          </Button>
-          <Button impact="light" onClick={() => setIsOpen(true)}>
-            Accessible dialog
+            Open dialog
           </Button>
         </div>
 
