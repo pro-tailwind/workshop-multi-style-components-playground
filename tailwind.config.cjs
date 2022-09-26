@@ -10,5 +10,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require('./stripes-plugin')],
+  plugins: [require('@tailwindcss/typography'), require('./stripes-plugin')],
 }
