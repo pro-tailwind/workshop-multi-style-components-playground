@@ -17,13 +17,16 @@ export default function ModalDemo() {
       */}
       {isOpenDefault && (
         <Modal
-          size="small"
           open={isOpenDefault}
           onClose={() => setIsOpenDefault(false)}
           title="Default tone"
           actions={{
             confirm: {
               label: 'Okay!',
+              action: () => setIsOpenDefault(false),
+            },
+            cancel: {
+              label: 'Cancel',
               action: () => setIsOpenDefault(false),
             },
           }}
@@ -44,13 +47,17 @@ export default function ModalDemo() {
       */}
       {isOpenDanger && (
         <Modal
-          size="medium"
+          tone="danger"
           open={isOpenDanger}
           onClose={() => setIsOpenDanger(false)}
           title="Danger tone"
           actions={{
             confirm: {
               label: 'Okay!',
+              action: () => setIsOpenDanger(false),
+            },
+            cancel: {
+              label: 'Cancel',
               action: () => setIsOpenDanger(false),
             },
           }}
@@ -71,13 +78,17 @@ export default function ModalDemo() {
       */}
       {isOpenSuccess && (
         <Modal
-          size="large"
+          tone="success"
           open={isOpenSuccess}
           onClose={() => setIsOpenSuccess(false)}
           title="Successful tone"
           actions={{
             confirm: {
               label: 'Okay!',
+              action: () => setIsOpenSuccess(false),
+            },
+            cancel: {
+              label: 'Cancel',
               action: () => setIsOpenSuccess(false),
             },
           }}

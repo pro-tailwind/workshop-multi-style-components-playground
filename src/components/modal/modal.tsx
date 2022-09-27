@@ -23,18 +23,7 @@ type ModalProps = {
     }
   }
   size?: 'small' | 'medium' | 'large'
-  /* 
-    ------------------------------
-    Once again, a new prop! This time, it's called `tone`.
-    It reflects the 3 tones available on the `Button`
-    component we created earlier in this workshop.
-
-    Notice we're importing the `ButtonProps` type
-    from the `Button` component file, to make
-    sure the possible values are the same!
-    ------------------------------
-  */
-  tone: ButtonProps['tone']
+  tone?: ButtonProps['tone']
 }
 
 // ---------------------------------
@@ -46,15 +35,11 @@ const sizeClasses: Record<ModalProps['size'], string> = {
   large: 'sm:max-w-2xl',
 }
 
-/* 
-  ------------------------------
-  TODO: Populate the `toneClasses` object below with 
-  the appropriate keys. Figure out where to use
-  these dynamic classes, so the modal shows
-  the correct `tone` styles.
-  ------------------------------
-*/
-const toneClasses: Record<ModalProps['tone'], string> = {}
+const toneClasses: Record<ModalProps['tone'], string> = {
+  default: 'bg-indigo-300',
+  danger: 'bg-red-300',
+  success: 'bg-green-300',
+}
 
 // ---------------------------------
 // Main Component
@@ -66,17 +51,14 @@ export default function Modal({
   children,
   actions,
   size = 'medium',
+  tone = 'default',
 }: ModalProps) {
-  /* 
-    ------------------------------
-    NOTE: You'll need to do more than just use the 
-    `toneClasses` object for this challenge...
-    ------------------------------
-  */
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
-      <div className="fixed inset-0 bg-opacity-75 transition-opacity bg-indigo-300"></div>
+      <div
+        className={cx('fixed inset-0 bg-opacity-75 transition-opacity', toneClasses[tone])}
+      ></div>
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           {/* Modal panel */}
@@ -100,11 +82,13 @@ export default function Modal({
 
             {/* Action buttons */}
             <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
-              <Button onClick={actions.confirm.action}>{actions.confirm.label}</Button>
+              <Button tone={tone} onClick={actions.confirm.action}>
+                {actions.confirm.label}
+              </Button>
 
               {/* Only show the cancel button if the action exists */}
               {actions.cancel && (
-                <Button impact="none" onClick={actions.cancel.action}>
+                <Button tone={tone} impact="none" onClick={actions.cancel.action}>
                   {actions.cancel.label}
                 </Button>
               )}
