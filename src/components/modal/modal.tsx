@@ -9,12 +9,6 @@ import Button from '../button'
 type ModalProps = {
   open: boolean
   onClose: () => void
-  /*
-    ------------------------------
-    We've added new props for our Modal title, 
-    body (children) and action buttons.
-    ------------------------------
-  */
   title: string
   children: React.ReactNode
   actions: {
@@ -51,29 +45,24 @@ export default function Modal({ open, onClose, title, children, actions }: Modal
               <div className="text-center sm:text-left">
                 {/* Title */}
                 <Dialog.Title className="text-xl font-semibold leading-6 text-slate-900">
-                  Confirm subscription
+                  {title}
                 </Dialog.Title>
 
                 {/* Body */}
-                <div className="mt-4">
-                  <p className="text-slate-500">
-                    You're about to confirm your{' '}
-                    <a className="underline text-indigo-600 hover:text-indigo-500" href="#">
-                      membership subscription
-                    </a>
-                    . Your account will be billed for a one-year membership. We just want to make
-                    sure you understand that.
-                  </p>
-                </div>
+                {children}
               </div>
             </div>
 
             {/* Action buttons */}
             <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
-              <Button onClick={onClose}>Confirm</Button>
-              <Button impact="none" onClick={onClose}>
-                Cancel
-              </Button>
+              <Button onClick={actions.confirm.action}>{actions.confirm.label}</Button>
+
+              {/* Only show the cancel button if the action exists */}
+              {actions.cancel && (
+                <Button impact="none" onClick={actions.cancel.action}>
+                  {actions.cancel.label}
+                </Button>
+              )}
             </div>
           </Dialog.Panel>
         </div>
