@@ -94,8 +94,8 @@ export default function Modal({
             {/* Modal panel */}
             <Transition.Child
               enter="transition ease-out"
-              enterFrom="translate-y-8"
-              enterTo="translate-x-0"
+              enterFrom="opacity-0 translate-y-8"
+              enterTo="opacity-100 translate-x-0"
               leave="transition ease-in"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
