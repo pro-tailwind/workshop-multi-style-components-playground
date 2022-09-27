@@ -17,6 +17,7 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <Modal
+        slideFrom="top"
         open={isOpenTop}
         onClose={() => setIsOpenTop(false)}
         title="Slide from top"
@@ -45,6 +46,7 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <Modal
+        slideFrom="right"
         open={isOpenRight}
         onClose={() => setIsOpenRight(false)}
         title="Slide from right"
@@ -73,6 +75,7 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <Modal
+        slideFrom="bottom"
         open={isOpenBottom}
         onClose={() => setIsOpenBottom(false)}
         title="Slide from bottom"
@@ -101,6 +104,7 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <Modal
+        slideFrom="left"
         open={isOpenLeft}
         onClose={() => setIsOpenLeft(false)}
         title="Slide from left"

@@ -24,9 +24,6 @@ type ModalProps = {
   }
   size?: 'small' | 'medium' | 'large'
   tone?: ButtonProps['tone']
-  /*
-    You know the drill - we've got a new prop!
-  */
   slideFrom?: 'top' | 'right' | 'bottom' | 'left'
 }
 
@@ -45,13 +42,24 @@ const toneClasses: Record<ModalProps['tone'], string> = {
   success: 'bg-green-300',
 }
 
-/* 
-  ------------------------------
-  TODO: Populate the `slideFromClasses` object below 
-  with the correct keys and styles.
-  ------------------------------
-*/
-const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {}
+const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {
+  top: {
+    from: '-translate-y-8',
+    to: 'translate-y-0',
+  },
+  right: {
+    from: 'translate-x-8',
+    to: 'translate-x-0',
+  },
+  bottom: {
+    from: 'translate-y-8',
+    to: 'translate-y-0',
+  },
+  left: {
+    from: '-translate-x-8',
+    to: 'translate-x-0',
+  },
+}
 
 // ---------------------------------
 // Main Component
@@ -66,12 +74,6 @@ export default function Modal({
   tone = 'default',
   slideFrom = 'top',
 }: ModalProps) {
-  /* 
-    ------------------------------
-    TODO: Update the code below to make the Dialog panel slide 
-    from the direction specified in the `slideFrom` prop.
-    ------------------------------
-  */
   return (
     <Transition.Root show={open}>
       <Dialog onClose={onClose} className="relative z-10">
@@ -94,8 +96,8 @@ export default function Modal({
             {/* Modal panel */}
             <Transition.Child
               enter="transition ease-out"
-              enterFrom="translate-y-8"
-              enterTo="translate-x-0"
+              enterFrom={cx('opacity-0', slideFromClasses[slideFrom].from)}
+              enterTo={cx('opacity-100', slideFromClasses[slideFrom].to)}
               leave="transition ease-in"
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
