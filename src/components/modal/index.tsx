@@ -4,29 +4,30 @@ import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
-  const [isOpenDefault, setIsOpenDefault] = React.useState(false)
-  const [isOpenDanger, setIsOpenDanger] = React.useState(false)
-  const [isOpenSuccess, setIsOpenSuccess] = React.useState(false)
+  const [isOpenTop, setIsOpenTop] = React.useState(false)
+  const [isOpenRight, setIsOpenRight] = React.useState(false)
+  const [isOpenBottom, setIsOpenBottom] = React.useState(false)
+  const [isOpenLeft, setIsOpenLeft] = React.useState(false)
 
   return (
     <main>
       {/* 
         ------------------------------
-        Default tone
+        Slide from top
         ------------------------------
       */}
       <Modal
-        open={isOpenDefault}
-        onClose={() => setIsOpenDefault(false)}
-        title="Default tone"
+        open={isOpenTop}
+        onClose={() => setIsOpenTop(false)}
+        title="Slide from top"
         actions={{
           confirm: {
             label: 'Okay!',
-            action: () => setIsOpenDefault(false),
+            action: () => setIsOpenTop(false),
           },
           cancel: {
             label: 'Cancel',
-            action: () => setIsOpenDefault(false),
+            action: () => setIsOpenTop(false),
           },
         }}
       >
@@ -40,22 +41,21 @@ export default function ModalDemo() {
 
       {/* 
         ------------------------------
-        Medium modal
+        Slide from right
         ------------------------------
       */}
       <Modal
-        tone="danger"
-        open={isOpenDanger}
-        onClose={() => setIsOpenDanger(false)}
-        title="Danger tone"
+        open={isOpenRight}
+        onClose={() => setIsOpenRight(false)}
+        title="Slide from right"
         actions={{
           confirm: {
             label: 'Okay!',
-            action: () => setIsOpenDanger(false),
+            action: () => setIsOpenRight(false),
           },
           cancel: {
             label: 'Cancel',
-            action: () => setIsOpenDanger(false),
+            action: () => setIsOpenRight(false),
           },
         }}
       >
@@ -69,22 +69,49 @@ export default function ModalDemo() {
 
       {/* 
         ------------------------------
-        Large modal
+        Slide from bottom
         ------------------------------
       */}
       <Modal
-        tone="success"
-        open={isOpenSuccess}
-        onClose={() => setIsOpenSuccess(false)}
-        title="Successful tone"
+        open={isOpenBottom}
+        onClose={() => setIsOpenBottom(false)}
+        title="Slide from bottom"
         actions={{
           confirm: {
             label: 'Okay!',
-            action: () => setIsOpenSuccess(false),
+            action: () => setIsOpenBottom(false),
           },
           cancel: {
             label: 'Cancel',
-            action: () => setIsOpenSuccess(false),
+            action: () => setIsOpenBottom(false),
+          },
+        }}
+      >
+        <div className="mt-4">
+          <p className="text-slate-500">
+            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
+            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+          </p>
+        </div>
+      </Modal>
+
+      {/* 
+        ------------------------------
+        Slide from left
+        ------------------------------
+      */}
+      <Modal
+        open={isOpenLeft}
+        onClose={() => setIsOpenLeft(false)}
+        title="Slide from left"
+        actions={{
+          confirm: {
+            label: 'Okay!',
+            action: () => setIsOpenLeft(false),
+          },
+          cancel: {
+            label: 'Cancel',
+            action: () => setIsOpenLeft(false),
           },
         }}
       >
@@ -102,14 +129,17 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <div className="flex gap-2">
-        <Button impact="light" onClick={() => setIsOpenDefault(true)}>
-          Small
+        <Button impact="light" onClick={() => setIsOpenTop(true)}>
+          From top
         </Button>
-        <Button tone="danger" impact="light" onClick={() => setIsOpenDanger(true)}>
-          Medium
+        <Button impact="light" onClick={() => setIsOpenRight(true)}>
+          From right
         </Button>
-        <Button tone="success" impact="light" onClick={() => setIsOpenSuccess(true)}>
-          Large
+        <Button impact="light" onClick={() => setIsOpenBottom(true)}>
+          From bottom
+        </Button>
+        <Button impact="light" onClick={() => setIsOpenLeft(true)}>
+          From left
         </Button>
       </div>
     </main>

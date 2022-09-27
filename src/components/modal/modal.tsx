@@ -24,6 +24,10 @@ type ModalProps = {
   }
   size?: 'small' | 'medium' | 'large'
   tone?: ButtonProps['tone']
+  /*
+    You know the drill - we've got a new prop!
+  */
+  slideFrom?: 'top' | 'right' | 'bottom' | 'left'
 }
 
 // ---------------------------------
@@ -41,6 +45,14 @@ const toneClasses: Record<ModalProps['tone'], string> = {
   success: 'bg-green-300',
 }
 
+/* 
+  ------------------------------
+  TODO: Populate the `slideFromClasses` object below 
+  with the correct keys and styles.
+  ------------------------------
+*/
+const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: string }> = {}
+
 // ---------------------------------
 // Main Component
 // ---------------------------------
@@ -52,7 +64,14 @@ export default function Modal({
   actions,
   size = 'medium',
   tone = 'default',
+  slideFrom = 'top',
 }: ModalProps) {
+  /* 
+    ------------------------------
+    TODO: Update the code below to make the Dialog panel slide 
+    from the direction specified in the `slideFrom` prop.
+    ------------------------------
+  */
   return (
     <Transition.Root show={open}>
       <Dialog onClose={onClose} className="relative z-10">
