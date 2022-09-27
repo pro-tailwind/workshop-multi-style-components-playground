@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
+import { cx } from '../../utils'
 import Button from '../button'
 
 // ---------------------------------
@@ -21,18 +22,45 @@ type ModalProps = {
       action: () => void
     }
   }
+  /*
+    ------------------------------
+    This time, we're adding a new `size` prop. 
+    It's  optional and defaults to `medium`.
+    ------------------------------
+  */
+  size?: 'small' | 'medium' | 'large'
 }
+
+// ---------------------------------
+// Style lookup directories
+// ---------------------------------
+
+/*  
+  ------------------------------
+  TODO: Populate the `sizeClasses` object below with 
+  the appropriate keys. 
+  
+  At the `sm` breakpoint and up, a max-width container 
+  should be applied, as follows:
+
+  small -> `sm`
+  medium -> `lg`
+  large -> `2xl`
+  ------------------------------
+*/
+const sizeClasses: Record<ModalProps['size'], string> = {}
 
 // ---------------------------------
 // Main Component
 // ---------------------------------
-export default function Modal({ open, onClose, title, children, actions }: ModalProps) {
-  /*  
-    ------------------------------
-    TODO: Update the code below to use the title, children 
-    and action props instead of having these "hardcoded".
-    ------------------------------
-  */
+export default function Modal({
+  open,
+  onClose,
+  title,
+  children,
+  actions,
+  size = 'medium',
+}: ModalProps) {
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
