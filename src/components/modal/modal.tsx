@@ -34,7 +34,7 @@ type ModalProps = {
     sure the possible values are the same!
     ------------------------------
   */
-  tone: ButtonProps['tone']
+  tone?: ButtonProps['tone']
 }
 
 // ---------------------------------
@@ -66,6 +66,7 @@ export default function Modal({
   children,
   actions,
   size = 'medium',
+  tone = 'default',
 }: ModalProps) {
   /* 
     ------------------------------

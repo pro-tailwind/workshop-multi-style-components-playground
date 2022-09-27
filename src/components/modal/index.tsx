@@ -17,7 +17,6 @@ export default function ModalDemo() {
       */}
       {isOpenDefault && (
         <Modal
-          size="small"
           open={isOpenDefault}
           onClose={() => setIsOpenDefault(false)}
           title="Default tone"
@@ -44,7 +43,7 @@ export default function ModalDemo() {
       */}
       {isOpenDanger && (
         <Modal
-          size="medium"
+          tone="danger"
           open={isOpenDanger}
           onClose={() => setIsOpenDanger(false)}
           title="Danger tone"
@@ -71,7 +70,7 @@ export default function ModalDemo() {
       */}
       {isOpenSuccess && (
         <Modal
-          size="large"
+          tone="success"
           open={isOpenSuccess}
           onClose={() => setIsOpenSuccess(false)}
           title="Successful tone"
