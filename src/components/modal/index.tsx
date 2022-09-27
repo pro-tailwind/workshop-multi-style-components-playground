@@ -8,6 +8,14 @@ export default function ModalDemo() {
   const [isOpenDanger, setIsOpenDanger] = React.useState(false)
   const [isOpenSuccess, setIsOpenSuccess] = React.useState(false)
 
+  /*
+    ------------------------------
+    TODO: Be sure to remove the `isOpenDefault` conditional 
+    (and others) in the code below, since the Transition 
+    component will be responsible to determine whether 
+    the Modal should be visible or not.
+    ------------------------------
+  */
   return (
     <main>
       {/* 

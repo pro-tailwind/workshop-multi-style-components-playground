@@ -61,12 +61,16 @@ export default function Modal({
       1. The background overlay should fade-in on enter, 
       fade-out on leave.
 
-      2. The Dialog pabel should slide-in from the bottom by 4 rem
-      on enter, and fade-out on leave.
+      2. The Dialog pabel should slide-in from the bottom 
+      by 2rem on enter, and fade-out on leave.
 
     You can use a `<Transition.Root>` component to 
     orchestrate both transitions, which can use 
     a `<Transition.Child>` component each.
+
+    WARNING: You'll need to remove the conditional 
+    `{isOpen}` checks in `index.tsx`, since the 
+    Transition takes care of that instead.
     ------------------------------
   */
   return (
