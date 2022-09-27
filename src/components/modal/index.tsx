@@ -4,12 +4,6 @@ import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
-  /* 
-    ------------------------------
-    We have 3 separate modals in this example, so 
-    we're using three separate pieces of state.
-    ------------------------------
-  */
   const [isOpenSmall, setIsOpenSmall] = React.useState(false)
   const [isOpenMedium, setIsOpenMedium] = React.useState(false)
   const [isOpenLarge, setIsOpenLarge] = React.useState(false)

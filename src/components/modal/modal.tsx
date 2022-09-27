@@ -22,33 +22,17 @@ type ModalProps = {
       action: () => void
     }
   }
-  /*
-    ------------------------------
-    This time, we're adding a new `size` prop. 
-    It's  optional and defaults to `medium`.
-    ------------------------------
-  */
   size?: 'small' | 'medium' | 'large'
 }
 
 // ---------------------------------
 // Style lookup directories
 // ---------------------------------
-
-/*  
-  ------------------------------
-  TODO: Populate the `sizeClasses` object below with 
-  the appropriate keys. 
-  
-  At the `sm` breakpoint and up, a max-width container 
-  should be applied, as follows:
-
-  small -> `sm`
-  medium -> `lg`
-  large -> `2xl`
-  ------------------------------
-*/
-const sizeClasses: Record<ModalProps['size'], string> = {}
+const sizeClasses: Record<ModalProps['size'], string> = {
+  small: 'sm:max-w-sm',
+  medium: 'sm:max-w-lg',
+  large: 'sm:max-w-2xl',
+}
 
 // ---------------------------------
 // Main Component
@@ -68,7 +52,12 @@ export default function Modal({
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           {/* Modal panel */}
-          <Dialog.Panel className="relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 w-full sm:max-w-lg">
+          <Dialog.Panel
+            className={cx(
+              'relative overflow-hidden rounded-lg bg-white text-left shadow-xl sm:my-8 w-full',
+              sizeClasses[size]
+            )}
+          >
             <div className="bg-white p-4 sm:p-6">
               <div className="text-center sm:text-left">
                 {/* Title */}
