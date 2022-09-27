@@ -4,27 +4,27 @@ import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
-  const [isOpenSmall, setIsOpenSmall] = React.useState(false)
-  const [isOpenMedium, setIsOpenMedium] = React.useState(false)
-  const [isOpenLarge, setIsOpenLarge] = React.useState(false)
+  const [isOpenDefault, setIsOpenDefault] = React.useState(false)
+  const [isOpenDanger, setIsOpenDanger] = React.useState(false)
+  const [isOpenSuccess, setIsOpenSuccess] = React.useState(false)
 
   return (
     <main>
       {/* 
         ------------------------------
-        Small modal
+        Default tone
         ------------------------------
       */}
-      {isOpenSmall && (
+      {isOpenDefault && (
         <Modal
           size="small"
-          open={isOpenSmall}
-          onClose={() => setIsOpenSmall(false)}
-          title="Small modal"
+          open={isOpenDefault}
+          onClose={() => setIsOpenDefault(false)}
+          title="Default tone"
           actions={{
             confirm: {
               label: 'Okay!',
-              action: () => setIsOpenSmall(false),
+              action: () => setIsOpenDefault(false),
             },
           }}
         >
@@ -42,16 +42,16 @@ export default function ModalDemo() {
         Medium modal
         ------------------------------
       */}
-      {isOpenMedium && (
+      {isOpenDanger && (
         <Modal
           size="medium"
-          open={isOpenMedium}
-          onClose={() => setIsOpenMedium(false)}
-          title="Medium modal"
+          open={isOpenDanger}
+          onClose={() => setIsOpenDanger(false)}
+          title="Danger tone"
           actions={{
             confirm: {
               label: 'Okay!',
-              action: () => setIsOpenMedium(false),
+              action: () => setIsOpenDanger(false),
             },
           }}
         >
@@ -69,16 +69,16 @@ export default function ModalDemo() {
         Large modal
         ------------------------------
       */}
-      {isOpenLarge && (
+      {isOpenSuccess && (
         <Modal
           size="large"
-          open={isOpenLarge}
-          onClose={() => setIsOpenLarge(false)}
-          title="Large modal"
+          open={isOpenSuccess}
+          onClose={() => setIsOpenSuccess(false)}
+          title="Successful tone"
           actions={{
             confirm: {
               label: 'Okay!',
-              action: () => setIsOpenLarge(false),
+              action: () => setIsOpenSuccess(false),
             },
           }}
         >
@@ -97,13 +97,13 @@ export default function ModalDemo() {
         ------------------------------
       */}
       <div className="flex gap-2">
-        <Button impact="light" onClick={() => setIsOpenSmall(true)}>
+        <Button impact="light" onClick={() => setIsOpenDefault(true)}>
           Small
         </Button>
-        <Button impact="light" onClick={() => setIsOpenMedium(true)}>
+        <Button tone="danger" impact="light" onClick={() => setIsOpenDanger(true)}>
           Medium
         </Button>
-        <Button impact="light" onClick={() => setIsOpenLarge(true)}>
+        <Button tone="success" impact="light" onClick={() => setIsOpenSuccess(true)}>
           Large
         </Button>
       </div>

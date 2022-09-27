@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
 import { cx } from '../../utils'
-import Button from '../button'
+import Button, { ButtonProps } from '../button'
 
 // ---------------------------------
 // Prop types
@@ -23,6 +23,18 @@ type ModalProps = {
     }
   }
   size?: 'small' | 'medium' | 'large'
+  /* 
+    ------------------------------
+    Once again, a new prop! This time, it's called `tone`.
+    It reflects the 3 tones available on the `Button`
+    component we created earlier in this workshop.
+
+    Notice we're importing the `ButtonProps` type
+    from the `Button` component file, to make
+    sure the possible values are the same!
+    ------------------------------
+  */
+  tone: ButtonProps['tone']
 }
 
 // ---------------------------------
@@ -33,6 +45,16 @@ const sizeClasses: Record<ModalProps['size'], string> = {
   medium: 'sm:max-w-lg',
   large: 'sm:max-w-2xl',
 }
+
+/* 
+  ------------------------------
+  TODO: Populate the `toneClasses` object below with 
+  the appropriate keys. Figure out where to use
+  these dynamic classes, so the modal shows
+  the correct `tone` styles.
+  ------------------------------
+*/
+const toneClasses: Record<ModalProps['tone'], string> = {}
 
 // ---------------------------------
 // Main Component
@@ -45,6 +67,12 @@ export default function Modal({
   actions,
   size = 'medium',
 }: ModalProps) {
+  /* 
+    ------------------------------
+    NOTE: You'll need to do more than just use the 
+    `toneClasses` object for this challenge...
+    ------------------------------
+  */
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
