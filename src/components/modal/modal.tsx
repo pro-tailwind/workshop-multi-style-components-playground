@@ -53,6 +53,22 @@ export default function Modal({
   size = 'medium',
   tone = 'default',
 }: ModalProps) {
+  /* 
+    ------------------------------
+    TODO: Add transitions using Headless UI's `Transition` component.
+    The transitions we're going for:
+      
+      1. The background overlay should fade-in on enter, 
+      fade-out on leave.
+
+      2. The Dialog pabel should slide-in from the bottom by 4 rem
+      on enter, and fade-out on leave.
+
+    You can use a `<Transition.Root>` component to 
+    orchestrate both transitions, which can use 
+    a `<Transition.Child>` component each.
+    ------------------------------
+  */
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
