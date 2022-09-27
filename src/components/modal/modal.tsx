@@ -127,21 +127,21 @@ export default function Modal({
                 {/* Action buttons */}
                 <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
                   <Button tone={tone} onClick={actions.confirm.action}>
-                    {actions.confirm.label}
+                    <span className="flex items-center gap-3">
+                      <span>{actions.confirm.label}</span>
+                      {/* 
+                        ------------------------------
+                        TODO: Add loading spinner next to the button text
+                        when `isLoading` is true
+                        ------------------------------
+                      */}
+                    </span>
                   </Button>
 
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
                     <Button tone={tone} impact="none" onClick={actions.cancel.action}>
-                      <span className="flex items-center gap-3">
-                        <span>{actions.cancel.label}</span>
-                        {/* 
-                          ------------------------------
-                          TODO: Add loading spinner next to the button text
-                          when `isLoading` is true
-                          ------------------------------
-                        */}
-                      </span>
+                      <span>{actions.cancel.label}</span>
                     </Button>
                   )}
                 </div>
