@@ -4,10 +4,26 @@ import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
-  const [isOpenTop, setIsOpenTop] = React.useState(false)
-  const [isOpenRight, setIsOpenRight] = React.useState(false)
-  const [isOpenBottom, setIsOpenBottom] = React.useState(false)
-  const [isOpenLeft, setIsOpenLeft] = React.useState(false)
+  const [isOpen, setIsOpen] = React.useState(false)
+  /* 
+    1. Create a new `isLoading` piece of state.
+    We'll use this to display a spinner. 
+  */
+
+  function handleConfirm() {
+    /* 
+      2. When the `confirm` button is clicked, 
+      set `isLoading` to true
+    */
+
+    /* 
+      3. Let's simulate an async operation with a `setTimeout`.
+      The Modal can be closed 
+    */
+    setTimeout(() => {
+      // TODO: Close the modal
+    }, 2000)
+  }
 
   return (
     <main>
@@ -18,132 +34,37 @@ export default function ModalDemo() {
       */}
       <Modal
         slideFrom="top"
-        open={isOpenTop}
-        onClose={() => setIsOpenTop(false)}
-        title="Slide from top"
+        tone="danger"
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        title="Delete account permantly"
         actions={{
           confirm: {
-            label: 'Okay!',
-            action: () => setIsOpenTop(false),
+            label: 'Yes, delete my account!',
+            action: handleConfirm,
+            // TODO: Add the `isLoading` prop here
           },
           cancel: {
-            label: 'Cancel',
-            action: () => setIsOpenTop(false),
+            label: 'Wow no, stop!',
+            action: () => setIsOpen(false),
           },
         }}
       >
         <div className="mt-4">
           <p className="text-slate-500">
-            This is a small modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+            You're about to delete your account permantently. This action cannot be undone. Are you
+            sure you want to do this?
           </p>
         </div>
       </Modal>
-
-      {/* 
-        ------------------------------
-        Slide from right
-        ------------------------------
-      */}
-      <Modal
-        slideFrom="right"
-        open={isOpenRight}
-        onClose={() => setIsOpenRight(false)}
-        title="Slide from right"
-        actions={{
-          confirm: {
-            label: 'Okay!',
-            action: () => setIsOpenRight(false),
-          },
-          cancel: {
-            label: 'Cancel',
-            action: () => setIsOpenRight(false),
-          },
-        }}
-      >
-        <div className="mt-4">
-          <p className="text-slate-500">
-            This is a medium modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-          </p>
-        </div>
-      </Modal>
-
-      {/* 
-        ------------------------------
-        Slide from bottom
-        ------------------------------
-      */}
-      <Modal
-        slideFrom="bottom"
-        open={isOpenBottom}
-        onClose={() => setIsOpenBottom(false)}
-        title="Slide from bottom"
-        actions={{
-          confirm: {
-            label: 'Okay!',
-            action: () => setIsOpenBottom(false),
-          },
-          cancel: {
-            label: 'Cancel',
-            action: () => setIsOpenBottom(false),
-          },
-        }}
-      >
-        <div className="mt-4">
-          <p className="text-slate-500">
-            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-          </p>
-        </div>
-      </Modal>
-
-      {/* 
-        ------------------------------
-        Slide from left
-        ------------------------------
-      */}
-      <Modal
-        slideFrom="left"
-        open={isOpenLeft}
-        onClose={() => setIsOpenLeft(false)}
-        title="Slide from left"
-        actions={{
-          confirm: {
-            label: 'Okay!',
-            action: () => setIsOpenLeft(false),
-          },
-          cancel: {
-            label: 'Cancel',
-            action: () => setIsOpenLeft(false),
-          },
-        }}
-      >
-        <div className="mt-4">
-          <p className="text-slate-500">
-            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-          </p>
-        </div>
-      </Modal>
-
       {/* 
         ------------------------------
         Toggle buttons
         ------------------------------
       */}
       <div className="flex gap-2">
-        <Button impact="light" onClick={() => setIsOpenTop(true)}>
-          From top
-        </Button>
-        <Button impact="light" onClick={() => setIsOpenRight(true)}>
-          From right
-        </Button>
-        <Button impact="light" onClick={() => setIsOpenBottom(true)}>
-          From bottom
-        </Button>
-        <Button impact="light" onClick={() => setIsOpenLeft(true)}>
-          From left
+        <Button tone="danger" impact="light" onClick={() => setIsOpen(true)}>
+          Open modal
         </Button>
       </div>
     </main>

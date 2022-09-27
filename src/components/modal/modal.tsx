@@ -20,6 +20,10 @@ type ModalProps = {
     confirm: {
       label: string
       action: () => void
+      /*
+        New prop alert, the `actions.confirm.isLoading` prop!
+      */
+      isLoading?: boolean
     }
   }
   size?: 'small' | 'medium' | 'large'
@@ -129,7 +133,15 @@ export default function Modal({
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
                     <Button tone={tone} impact="none" onClick={actions.cancel.action}>
-                      {actions.cancel.label}
+                      <span className="flex items-center gap-3">
+                        <span>{actions.cancel.label}</span>
+                        {/* 
+                          ------------------------------
+                          TODO: Add loading spinner next to the button text
+                          when `isLoading` is true
+                          ------------------------------
+                        */}
+                      </span>
                     </Button>
                   )}
                 </div>
@@ -139,5 +151,44 @@ export default function Modal({
         </div>
       </Dialog>
     </Transition.Root>
+  )
+}
+
+// ------------------------------
+// Loading spinner
+// ------------------------------
+// ---------------------------------
+// Implementation components
+// ---------------------------------
+function LoadingSpinner() {
+  return (
+    <Transition
+      appear
+      show={true}
+      enter="transition ease-out"
+      enterFrom="scale-0"
+      enterTo="scale-100"
+    >
+      <svg
+        className="animate-spin h-5 w-5 text-white"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        ></circle>
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        ></path>
+      </svg>
+    </Transition>
   )
 }
