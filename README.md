@@ -1,49 +1,74 @@
-# Welcome to [Astro](https://astro.build)
+# Multi-Style Configurable UI Components With Tailwind CSS
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+This is the workshop app repo. **You don't need to clone it and set it up locally**, as we'll be doing all the challenges in [Gitpod](https://gitpod.io).
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The "companion" website for this website is located at https://multi-style-components.protailwind.com. Each challenge in that website has a Gitpod link to the relevant branch and file for a given challenge.
 
-![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
+If you choose to use this repo, you must know that each challenge is located in a different branch.
 
+---
 
-## 🚀 Project Structure
+## Workshop Schedule
 
-Inside of your Astro project, you'll see the following folders and files:
+Here's what the workshop timetable will look like:
 
-```
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Time              | What    | Length | Topic                         |
+| ----------------- | ------- | ------ | ----------------------------- |
+| 1:00 PM - 1:15 PM | Intro   | 15 min | Meet & Greet, Housekeeping    |
+| 1:15 PM - 2:15 PM | Content | 60 min | Multi-Style Components part 1 |
+| 2:15 PM - 2:30 PM | Break   | 15 min | Coffee/Snacks                 |
+| 2:30 PM - 3:45 PM | Content | 75 min | Multi-Style Components part 2 |
+| 3:45 PM - 4:00 PM | Break   | 15 min | Coffee/Snacks                 |
+| 4:00 PM - 5:00 PM | Content | 60 min | Multi-Style Components part 3 |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+---
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Focus groups & breakout rooms
 
-Any static assets, like images, can be placed in the `public/` directory.
+You'll be split in small focus groups for today's workshop challenges. This consists of separate "breakout rooms", where each member of the group will take turns "driving" a challenge by sharing their screen.
 
-## 🧞 Commands
+The groups will remain the same for the entire workshop.
 
-All commands are run from the root of the project, from a terminal:
+At the end of challenges, we'll all come back together to discuss. "Pairing" in small groups and actively participating to group discusions are key to this workshop. They'll help you maximise your learning experience.
 
-| Command                | Action                                             |
-| :--------------------- | :------------------------------------------------- |
-| `npm install`          | Installs dependencies                              |
-| `npm run dev`          | Starts local dev server at `localhost:3000`        |
-| `npm run build`        | Build your production site to `./dist/`            |
-| `npm run preview`      | Preview your build locally, before deploying       |
-| `npm run astro ...`    | Run CLI commands like `astro add`, `astro preview` |
-| `npm run astro --help` | Get help using the Astro CLI                       |
+I really encourage everyone to participate actively, ask questions, and of course be supportive of one another!
 
-## 👀 Want to learn more?
+---
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+### Aaaand... who am I?
+
+I'm Simon, your workshop instructor. 👋
+
+If you've watched some YouTube videos from the Tailwind Labs channel, you've most probably seen my face already!
+
+I love utility-first CSS. I've been supporting and promoting this styling approach even before Tailwind CSS existed! I'm a front-end developer, designer and content creator.
+
+I bring a lot of enthusiasm and positive energy in everything I do, this is just how I'm wired up!
+
+I have been teaching in-person workshops for multiple senior engineering teams, and a constant piece of feedback I get is my workshops are exciting, fun and engaging. To me, that's the best way to learn!
+
+I sometimes speak at conferences and meetups. I make YouTube videos and I'm also an instructor on [egghead.io](https://egghead.io).
+
+You can connect with me on Twitter, I'm [simonswiss](https://twitter.com/simonswiss) 🇨🇭
+
+I'm super excited to dive into this workshop with you.
+
+---
+
+### 📜 Assumptions
+
+This workshop assumes the following:
+
+- You are already familiar with Tailwind CSS and its core concepts
+- You are comfortable enough with CSS and JavaScript
+
+---
+
+### 📋 Dev Environment Requirements
+
+**You don't need to install anything on your machine for this workshop**. However, if you want to get this workshop app running locally, you should have the following installed in your development environment:
+
+- [git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) >= 2.34.1
+- [Node](https://nodejs.org/en/download/) >= 12.18.4
+
+See you at the workshop!
