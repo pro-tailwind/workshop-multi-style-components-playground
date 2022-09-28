@@ -157,9 +157,6 @@ export default function Modal({
 // ------------------------------
 // Loading spinner
 // ------------------------------
-// ---------------------------------
-// Implementation components
-// ---------------------------------
 function LoadingSpinner() {
   return (
     <Transition
