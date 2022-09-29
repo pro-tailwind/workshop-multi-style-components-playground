@@ -1,5 +1,14 @@
 import React from 'react'
 
+// ------------------------------
+// Prop types
+// ------------------------------
+type ButtonProps = {
+  size?: 'small' | 'medium' | 'large'
+  impact?: 'bold' | 'light' | 'none'
+  shape?: 'square' | 'rounded' | 'pill'
+}
+
 /*
   ------------------------------
   1. Extract the Tailwind classes common to
@@ -10,15 +19,6 @@ import React from 'react'
 const baseClasses = ''
 
 // ------------------------------
-// Possible prop values for `size`, `impact` and `shape`
-// ------------------------------
-interface ButtonProps extends React.ComponentProps<'button'> {
-  size?: 'small' | 'medium' | 'large'
-  impact?: 'bold' | 'light' | 'none'
-  shape?: 'square' | 'rounded' | 'pill'
-}
-
-// ------------------------------
 // Component definition (with default variants)
 // ------------------------------
 const Button = ({
@@ -26,7 +26,7 @@ const Button = ({
   impact = 'bold',
   shape = 'rounded',
   ...restProps
-}: ButtonProps) => {
+}: ButtonProps & React.ComponentProps<'button'>) => {
   return (
     <button
       {...restProps}
