@@ -2,6 +2,15 @@ import React from 'react'
 import { cx } from '../utils'
 
 // ------------------------------
+// Prop types
+// ------------------------------
+type ButtonProps = {
+  size?: 'small' | 'medium' | 'large'
+  impact?: 'bold' | 'light' | 'none'
+  shape?: 'square' | 'rounded' | 'pill'
+}
+
+// ------------------------------
 // Tailwind Classes lookup directory
 // ------------------------------
 const baseClasses =
@@ -14,16 +23,7 @@ const baseClasses =
   and the key should mirror the prop value.
   ------------------------------
 */
-const impactClasses = {}
-
-// ------------------------------
-// Possible prop values for `size`, `impact` and `shape`
-// ------------------------------
-interface ButtonProps extends React.ComponentProps<'button'> {
-  size?: 'small' | 'medium' | 'large'
-  impact?: 'bold' | 'light' | 'none'
-  shape?: 'square' | 'rounded' | 'pill'
-}
+const impactClasses: Record<ButtonProps['impact'], string> = {}
 
 // ------------------------------
 // Component definition (with default variants)
@@ -33,7 +33,7 @@ const Button = ({
   impact = 'bold',
   shape = 'rounded',
   ...restProps
-}: ButtonProps) => {
+}: ButtonProps & React.ComponentProps<'button'>) => {
   return (
     <button
       {...restProps}
