@@ -9,7 +9,7 @@ import GroupDisplay from '../components/group-display.astro'
       >button</code
     > elements, each repeating a lot of the same Tailwind CSS utility classes:
   </p><div class="mt-4 space-y-4">
-    <GroupDisplay title="Impact">
+    <GroupDisplay title="Default tone">
       <button
         class="rounded-md bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       >
@@ -26,40 +26,38 @@ import GroupDisplay from '../components/group-display.astro'
         None
       </button>
     </GroupDisplay>
-
-    <GroupDisplay title="Size">
+    <GroupDisplay title="Danger tone">
       <button
-        class="rounded bg-indigo-500 px-7 py-2.5 text-lg font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-red-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-red-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       >
-        Large
+        Bold
       </button>
       <button
-        class="rounded bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-red-100 px-5 py-2 font-semibold text-red-700 hover:bg-red-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50"
       >
-        Medium
+        Light
       </button>
       <button
-        class="rounded bg-indigo-500 px-3 py-1 text-sm font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-transparent px-5 py-2 font-semibold text-red-700 hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50"
       >
-        Small
+        None
       </button>
     </GroupDisplay>
-
-    <GroupDisplay title="Shape">
+    <GroupDisplay title="Success tone">
       <button
-        class="bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-green-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-green-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       >
-        Square
+        Bold
       </button>
       <button
-        class="rounded-md bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-green-100 px-5 py-2 font-semibold text-green-700 hover:bg-green-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50"
       >
-        Rounded
+        Light
       </button>
       <button
-        class="rounded-full bg-indigo-500 px-5 py-2 font-semibold text-white shadow-md hover:bg-indigo-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+        class="rounded-md bg-transparent px-5 py-2 font-semibold text-green-700 hover:bg-green-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2 active:translate-y-px disabled:pointer-events-none disabled:opacity-50"
       >
-        Pill button
+        None
       </button>
     </GroupDisplay>
   </div>
