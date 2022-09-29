@@ -20,24 +20,16 @@ export const baseClasses =
   'relative w-12 max-w-full aspect-square rounded-full grid place-items-center focus:outline-none focus:ring focus:ring-offset-1 focus:ring-indigo-400'
 
 /* 
-  Now, we want to create a `statusClasses` lookup object.
-  That object should have a key for each possible
-  status listed in the `Status` type at the
-  top of this file.
-
-  We're using a TypeScrip `Record` here to ensure we 
-  create a key for each status. This is why the 
-  `statusClasses` object is currently
-  underlined in red squigglies.
-
-  Your challenge populate that `statusClasses` object below with 
-  the correct keys (statuses) and values (class strings)
+  TODO: Populate the `statusClasses` object below with the 
+  correct keys (statuses) and values (class strings)
   to make both status tables look identical.
+
+  See the `dynamicClasses` object further down for reference!
 */
 export const statusClasses: Record<Status, string> = {}
 
 // ------------------------------
-// Quick access
+// `dynamicClasses` reference
 // ------------------------------
 /*
   For your convenience, here's a copy of are the dynamic styles used 
