@@ -1,8 +1,6 @@
 /* 
-  The first few lines are wiring up React-Aria's `useCalendar` implementation. 
-  You don't need to worry about any of that for this challenge. 
-  
-  If curious, you can learn more about the `useCalendar` hook here: 
+  The first few lines are wiring up React-Aria's `useCalendar`.  
+  If curious, you can learn more here: 
   https://react-spectrum.adobe.com/react-aria/useCalendar.html
 */
 import * as React from 'react'
@@ -106,7 +104,7 @@ export default function CalendarDay({ state, date, bookingAvailabilities }) {
           baseClasses,
           /* 
             ## CHALLENGE ##
-            1b. All the styles below can go away.Instead of deleting them, 
+            1b. All the styles below can go away. Instead of deleting them, 
             comment them out so you can compare the "before/after"
             in terms of complexity.
           */
