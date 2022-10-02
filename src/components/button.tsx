@@ -11,15 +11,14 @@ type ButtonProps = {
 
 /*
   ------------------------------
-  1. Extract the Tailwind classes common to
-  all components into the `baseClasses` variable
-  below
+  1. Extract the Tailwind classes common to **all buttons** 
+  into the `baseClasses` variable below.
   ------------------------------
 */
 const baseClasses = ''
 
 // ------------------------------
-// Component definition (with default variants)
+// Component definition
 // ------------------------------
 const Button = ({
   size = 'medium',
@@ -32,8 +31,8 @@ const Button = ({
       {...restProps}
       /* 
         ------------------------------
-        2. Add the `baseClasses` variable into the 
-        className attribute below.
+        2. Add the `baseClasses` variable into 
+        the className attribute below.
         ------------------------------
       */
       className=""
