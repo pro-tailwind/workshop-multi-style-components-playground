@@ -14,7 +14,7 @@ export default function ModalDemo() {
       and `action` props to the modal below.
       ------------------------------
     */}
-      {isOpen && <Modal open={isOpen} onClose={() => setIsOpen(false)} />}
+      <Modal open={isOpen} onClose={() => setIsOpen(false)} />
 
       {/* The modal toggle */}
       <Button impact="light" onClick={() => setIsOpen(true)}>
