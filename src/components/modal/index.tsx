@@ -106,13 +106,13 @@ export default function ModalDemo() {
       */}
       <div className="flex gap-2">
         <Button impact="light" onClick={() => setIsOpenDefault(true)}>
-          Small
+          Default tone
         </Button>
         <Button tone="danger" impact="light" onClick={() => setIsOpenDanger(true)}>
-          Medium
+          Danger
         </Button>
         <Button tone="success" impact="light" onClick={() => setIsOpenSuccess(true)}>
-          Large
+          Success
         </Button>
       </div>
     </main>
