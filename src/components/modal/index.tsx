@@ -4,126 +4,40 @@ import Modal from './modal'
 import Button from '../button'
 
 export default function ModalDemo() {
-  const [isOpenDefault, setIsOpenDefault] = React.useState(false)
-  const [isOpenDanger, setIsOpenDanger] = React.useState(false)
-  const [isOpenSuccess, setIsOpenSuccess] = React.useState(false)
-
-  /*
-    ------------------------------
-    TODO: Be sure to remove the `isOpenDefault` conditional 
-    (and others) in the code below, since the Transition 
-    component will be responsible to determine whether 
-    the Modal should be visible or not.
-    ------------------------------
-  */
+  const [isOpen, setIsOpen] = React.useState(false)
   return (
     <main>
-      {/* 
-        ------------------------------
-        Default tone
-        ------------------------------
-      */}
-      {isOpenDefault && (
-        <Modal
-          open={isOpenDefault}
-          onClose={() => setIsOpenDefault(false)}
-          title="Default tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenDefault(false),
-            },
-            cancel: {
-              label: 'Cancel',
-              action: () => setIsOpenDefault(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a small modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
+      <Modal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        title=" Modal transition"
+        actions={{
+          confirm: {
+            label: 'That was nice!',
+            action: () => setIsOpen(false),
+          },
+          cancel: {
+            label: 'Wow',
+            action: () => setIsOpen(false),
+          },
+        }}
+      >
+        <div className="mt-4">
+          <p className="text-slate-500">
+            A little bit of transition animation can go a long way! How much nicer does that modal
+            feel now (providing you manage to add the transition) 🎉
+          </p>
+        </div>
+      </Modal>
 
       {/* 
         ------------------------------
-        Medium modal
-        ------------------------------
-      */}
-      {isOpenDanger && (
-        <Modal
-          tone="danger"
-          open={isOpenDanger}
-          onClose={() => setIsOpenDanger(false)}
-          title="Danger tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenDanger(false),
-            },
-            cancel: {
-              label: 'Cancel',
-              action: () => setIsOpenDanger(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a medium modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
-
-      {/* 
-        ------------------------------
-        Large modal
-        ------------------------------
-      */}
-      {isOpenSuccess && (
-        <Modal
-          tone="success"
-          open={isOpenSuccess}
-          onClose={() => setIsOpenSuccess(false)}
-          title="Successful tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenSuccess(false),
-            },
-            cancel: {
-              label: 'Cancel',
-              action: () => setIsOpenSuccess(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
-
-      {/* 
-        ------------------------------
-        Toggle buttons
+        Toggle button
         ------------------------------
       */}
       <div className="flex gap-2">
-        <Button impact="light" onClick={() => setIsOpenDefault(true)}>
-          Small
-        </Button>
-        <Button tone="danger" impact="light" onClick={() => setIsOpenDanger(true)}>
-          Medium
-        </Button>
-        <Button tone="success" impact="light" onClick={() => setIsOpenSuccess(true)}>
-          Large
+        <Button impact="light" onClick={() => setIsOpen(true)}>
+          With transition
         </Button>
       </div>
     </main>
