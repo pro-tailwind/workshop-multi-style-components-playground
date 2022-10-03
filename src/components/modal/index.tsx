@@ -15,80 +15,89 @@ export default function ModalDemo() {
         Default tone
         ------------------------------
       */}
-      {isOpenDefault && (
-        <Modal
-          open={isOpenDefault}
-          onClose={() => setIsOpenDefault(false)}
-          title="Default tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenDefault(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a small modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
+
+      <Modal
+        open={isOpenDefault}
+        onClose={() => setIsOpenDefault(false)}
+        title="Default tone"
+        actions={{
+          confirm: {
+            label: 'Okay!',
+            action: () => setIsOpenDefault(false),
+          },
+          cancel: {
+            label: 'Nope',
+            action: () => setIsOpenDefault(false),
+          },
+        }}
+      >
+        <div className="mt-4">
+          <p className="text-slate-500">
+            This is a small modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
+            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+          </p>
+        </div>
+      </Modal>
 
       {/* 
         ------------------------------
         Medium modal
         ------------------------------
       */}
-      {isOpenDanger && (
-        <Modal
-          tone="danger"
-          open={isOpenDanger}
-          onClose={() => setIsOpenDanger(false)}
-          title="Danger tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenDanger(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a medium modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
+
+      <Modal
+        tone="danger"
+        open={isOpenDanger}
+        onClose={() => setIsOpenDanger(false)}
+        title="Danger tone"
+        actions={{
+          confirm: {
+            label: 'Yes, delete my account!',
+            action: () => setIsOpenDanger(false),
+          },
+          cancel: {
+            label: 'No, Stop!',
+            action: () => setIsOpenDanger(false),
+          },
+        }}
+      >
+        <div className="mt-4">
+          <p className="text-slate-500">
+            This is a medium modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+            Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+          </p>
+        </div>
+      </Modal>
 
       {/* 
         ------------------------------
         Large modal
         ------------------------------
       */}
-      {isOpenSuccess && (
-        <Modal
-          tone="success"
-          open={isOpenSuccess}
-          onClose={() => setIsOpenSuccess(false)}
-          title="Successful tone"
-          actions={{
-            confirm: {
-              label: 'Okay!',
-              action: () => setIsOpenSuccess(false),
-            },
-          }}
-        >
-          <div className="mt-4">
-            <p className="text-slate-500">
-              This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
-            </p>
-          </div>
-        </Modal>
-      )}
+
+      <Modal
+        tone="success"
+        open={isOpenSuccess}
+        onClose={() => setIsOpenSuccess(false)}
+        title="Successful tone"
+        actions={{
+          confirm: {
+            label: 'Awesome!',
+            action: () => setIsOpenSuccess(false),
+          },
+          cancel: {
+            label: 'Cancel',
+            action: () => setIsOpenSuccess(false),
+          },
+        }}
+      >
+        <div className="mt-4">
+          <p className="text-slate-500">
+            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
+            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+          </p>
+        </div>
+      </Modal>
 
       {/* 
         ------------------------------
