@@ -62,6 +62,7 @@ const Button = ({
   size = 'medium',
   impact = 'bold',
   shape = 'rounded',
+  tone = 'default',
   ...restProps
 }: ButtonProps & React.ComponentProps<'button'>) => {
   return (
