@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog } from '@headlessui/react'
 
 import { cx } from '../../utils'
 import Button from '../button'
