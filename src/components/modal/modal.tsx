@@ -40,7 +40,7 @@ type ModalProps = {
   TODO: Populate the `sizeClasses` object below with 
   the appropriate keys. 
   
-  At the `sm` breakpoint and up, a max-width container 
+  **At the `sm` breakpoint and up**, a max-width container 
   should be applied, as follows:
 
   small -> `sm`
