@@ -76,9 +76,7 @@ export default function Modal({
   return (
     <Dialog open={open} onClose={onClose} className="relative z-10">
       {/* Background overlay */}
-      <div
-        className={cx('fixed inset-0 bg-opacity-75 transition-opacity', toneClasses[tone])}
-      ></div>
+      <div className={cx('fixed inset-0 bg-opacity-75', toneClasses[tone])}></div>
       <div className="fixed inset-0 z-10 overflow-y-auto">
         <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
           {/* Modal panel */}
