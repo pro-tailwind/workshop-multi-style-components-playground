@@ -41,7 +41,7 @@ export default function ModalDemo() {
 
       {/* 
         ------------------------------
-        Medium modal
+        Danger modal
         ------------------------------
       */}
 
@@ -71,7 +71,7 @@ export default function ModalDemo() {
 
       {/* 
         ------------------------------
-        Large modal
+        Success modal
         ------------------------------
       */}
 
