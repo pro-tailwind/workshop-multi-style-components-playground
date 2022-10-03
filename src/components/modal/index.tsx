@@ -49,7 +49,7 @@ export default function ModalDemo() {
         tone="danger"
         open={isOpenDanger}
         onClose={() => setIsOpenDanger(false)}
-        title="Danger tone"
+        title="Danger tone 🙀"
         actions={{
           confirm: {
             label: 'Yes, delete my account!',
@@ -79,7 +79,7 @@ export default function ModalDemo() {
         tone="success"
         open={isOpenSuccess}
         onClose={() => setIsOpenSuccess(false)}
-        title="Successful tone"
+        title="Successful tone 🎉"
         actions={{
           confirm: {
             label: 'Awesome!',
