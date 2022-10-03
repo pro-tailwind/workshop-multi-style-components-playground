@@ -15,7 +15,7 @@ export default function ModalDemo() {
       `onClose` prop.
       ------------------------------
     */}
-      {isOpen && <Modal onClose={() => setIsOpen(false)} />}
+      {isOpen && <Modal open={isOpen} onClose={() => setIsOpen(false)} />}
 
       {/* 
       ------------------------------

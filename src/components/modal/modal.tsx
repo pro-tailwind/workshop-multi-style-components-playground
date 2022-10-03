@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Dialog, Transition } from '@headlessui/react'
+import { Dialog } from '@headlessui/react'
 
 import Button from '../button'
 
@@ -7,13 +7,14 @@ import Button from '../button'
 // Prop types
 // ---------------------------------
 type ModalProps = {
+  open: boolean
   onClose: () => void
 }
 
 // ---------------------------------
 // Main Component
 // ---------------------------------
-export default function Modal({ onClose }: ModalProps) {
+export default function Modal({ open, onClose }: ModalProps) {
   /*  
     ------------------------------
     TODO: Use Headless UI's `Dialog` component to improve
