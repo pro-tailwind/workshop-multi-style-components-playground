@@ -34,8 +34,9 @@ export default function ModalDemo() {
       >
         <div className="mt-4">
           <p className="text-slate-500">
-            This is a small modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+            This modal slides from the top. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi
+            voluptas.
           </p>
         </div>
       </Modal>
@@ -63,8 +64,9 @@ export default function ModalDemo() {
       >
         <div className="mt-4">
           <p className="text-slate-500">
-            This is a medium modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-            Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+            This modal slides from the right. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi
+            voluptas.
           </p>
         </div>
       </Modal>
@@ -92,8 +94,9 @@ export default function ModalDemo() {
       >
         <div className="mt-4">
           <p className="text-slate-500">
-            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+            This modal slides from the bottom. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi
+            voluptas.
           </p>
         </div>
       </Modal>
@@ -121,8 +124,9 @@ export default function ModalDemo() {
       >
         <div className="mt-4">
           <p className="text-slate-500">
-            This is a large modal. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-            commodi dolorum ut consectetur provident ipsum corporis nihil, animi voluptas.
+            This modal slides from the left. Lorem ipsum dolor, sit amet consectetur adipisicing
+            elit. Tenetur commodi dolorum ut consectetur provident ipsum corporis nihil, animi
+            voluptas.
           </p>
         </div>
       </Modal>
