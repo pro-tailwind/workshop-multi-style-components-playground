@@ -97,8 +97,8 @@ export default function Modal({
               enterFrom="opacity-0 translate-y-8"
               enterTo="opacity-100 translate-x-0"
               leave="transition ease-in"
-              leaveFrom="opacity-100"
-              leaveTo="opacity-0"
+              leaveFrom="opacity-100 scale-100"
+              leaveTo="opacity-0 scale-95"
             >
               <Dialog.Panel
                 className={cx(
