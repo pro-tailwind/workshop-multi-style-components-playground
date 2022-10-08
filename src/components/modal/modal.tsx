@@ -10,6 +10,7 @@ import Button, { ButtonProps } from '../button'
 type ModalProps = {
   open: boolean
   onClose: () => void
+  onCloseComplete: () => void
   title: string
   children: React.ReactNode
   actions: {
@@ -20,9 +21,6 @@ type ModalProps = {
     confirm: {
       label: string
       action: () => void
-      /*
-        New prop alert, the `actions.confirm.isLoading` prop!
-      */
       isLoading?: boolean
     }
   }
@@ -71,6 +69,7 @@ const slideFromClasses: Record<ModalProps['slideFrom'], { from: string; to: stri
 export default function Modal({
   open,
   onClose,
+  onCloseComplete,
   title,
   children,
   actions,
@@ -79,7 +78,7 @@ export default function Modal({
   slideFrom = 'top',
 }: ModalProps) {
   return (
-    <Transition.Root show={open}>
+    <Transition.Root show={open} afterLeave={onCloseComplete}>
       <Dialog onClose={onClose} className="relative z-10">
         {/* Background overlay */}
         <Transition.Child
@@ -126,21 +125,25 @@ export default function Modal({
 
                 {/* Action buttons */}
                 <div className="border-t p-4 flex flex-col gap-2 sm:flex-row-reverse">
-                  <Button tone={tone} onClick={actions.confirm.action}>
+                  <Button
+                    disabled={actions.confirm.isLoading}
+                    tone={tone}
+                    onClick={actions.confirm.action}
+                  >
                     <span className="flex items-center gap-3">
                       <span>{actions.confirm.label}</span>
-                      {/* 
-                        ------------------------------
-                        TODO: Add loading spinner next to the button text
-                        when `isLoading` is true
-                        ------------------------------
-                      */}
+                      {actions.confirm.isLoading && <LoadingSpinner />}
                     </span>
                   </Button>
 
                   {/* Only show the cancel button if the action exists */}
                   {actions.cancel && (
-                    <Button tone={tone} impact="none" onClick={actions.cancel.action}>
+                    <Button
+                      disabled={actions.confirm.isLoading}
+                      tone={tone}
+                      impact="none"
+                      onClick={actions.cancel.action}
+                    >
                       <span>{actions.cancel.label}</span>
                     </Button>
                   )}

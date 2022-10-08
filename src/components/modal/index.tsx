@@ -5,23 +5,12 @@ import Button from '../button'
 
 export default function ModalDemo() {
   const [isOpen, setIsOpen] = React.useState(false)
-  /* 
-    1. Create a new `isLoading` piece of state.
-    We'll use this to display a spinner. 
-  */
+  const [isLoading, setIsLoading] = React.useState(false)
 
   function handleConfirm() {
-    /* 
-      2. When the `confirm` button is clicked, 
-      set `isLoading` to true
-    */
-
-    /* 
-      3. Let's simulate an async operation with a `setTimeout`.
-      The Modal can be closed 
-    */
+    setIsLoading(true)
     setTimeout(() => {
-      // TODO: Close the modal
+      setIsOpen(false)
     }, 2000)
   }
 
@@ -37,12 +26,13 @@ export default function ModalDemo() {
         tone="danger"
         open={isOpen}
         onClose={() => setIsOpen(false)}
+        onCloseComplete={() => setIsLoading(false)}
         title="Delete account permantly"
         actions={{
           confirm: {
             label: 'Yes, delete my account!',
             action: handleConfirm,
-            // TODO: Add the `isLoading` prop here
+            isLoading,
           },
           cancel: {
             label: 'Wow no, stop!',
